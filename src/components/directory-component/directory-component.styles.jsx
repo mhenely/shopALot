@@ -32,17 +32,23 @@ export const Body = styled.div`
   p {
     font-weight: lighter;
     font-size: 16px; 
-  } 
+  }
+  &:hover { 
+    background-color: white; 
+    color: black; 
+    border: 1px solid black; 
+  }
 `;
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
-  height: 240px;
+  height: 400px;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  border-radius: .25rem;
   margin: 0 7.5px 15px; 
   overflow: hidden;
 

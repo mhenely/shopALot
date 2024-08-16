@@ -13,7 +13,6 @@ const DirectoryComponent = ({ category }) => {
   // const style = {backgroundImage: `url(${imageSrc})`}
 
   return (
-
     <DirectoryItemContainer onClick={onNavigateHandler}>
       <BackgroundImage imageurl={imageSrc}/>
       <Body>
@@ -23,6 +22,7 @@ const DirectoryComponent = ({ category }) => {
     </DirectoryItemContainer>
   )
 }
+
 
 export default DirectoryComponent
 

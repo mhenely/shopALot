@@ -32,18 +32,25 @@ const categories = [
     title: "traveling",
     imageSrc: 'src/assets/travel.png',
     route: 'categories/traveling'
-  }
+  },
 ]
 
 const CategoryDirectory = () => {
+
   return (
-    <DirectoryContainer>
-      {
-        categories.map(category => {
-          return <DirectoryComponent key={category.title} category={category} />
-        })
-      }
-    </DirectoryContainer>
+    <div className="bg-white">
+      <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Explore by Category</h2>
+        <p className="mt-4 text-base text-gray-500">
+          Each category represents one of my interests. Browse through each to get an understanding of my favorites!
+        </p>
+      <DirectoryContainer>
+        {categories.map((category) => (
+          <DirectoryComponent key={category.title} category={category} />
+        ))}
+      </DirectoryContainer>
+    </div>
+  </div>
   )
 }
 

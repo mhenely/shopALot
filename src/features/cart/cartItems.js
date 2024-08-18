@@ -1,15 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  items: [
-    {
-      id: 7,
-      name: 'Denali',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Every_Road-_Denali_%287945497984%29.jpg/2880px-Every_Road-_Denali_%287945497984%29.jpg',
-      price: 350,
-      quantity: 1
-    },
-  ]
+  items: [],
 }
 
 export const cartItemsSlice = createSlice({
@@ -18,7 +10,9 @@ export const cartItemsSlice = createSlice({
   reducers: {
     incrementItems: (state, action) => {
 
-      const { name, price, imageUrl, id } = action.payload; 
+      const { name, price, imageUrl, id, category } = action.payload; 
+
+      console.log({category})
 
       // check if item already in cart
       const existingItem = state.items.find(item => item.id === id)
@@ -67,7 +61,7 @@ export const cartItemsSlice = createSlice({
 
     removeAllItems: (state) => {
       state.items = [];
-    }
+    },
 
   }
 })

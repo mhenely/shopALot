@@ -12,6 +12,8 @@ const CategoryProductCard = ({ product, category }) => {
   const dispatch = useDispatch()
 
   const onNavigateHandler = () => { 
+
+    console.log()
     
     if (category) {
       navigate(`${category}/${name.toLowerCase()}`)
@@ -21,7 +23,7 @@ const CategoryProductCard = ({ product, category }) => {
   }
 
   const addCartItem = () => {
-    dispatch(incrementItems({ name, price, imageUrl, id }))
+    dispatch(incrementItems(product))
   }
   
 

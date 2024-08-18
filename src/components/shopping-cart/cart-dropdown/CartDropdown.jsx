@@ -12,6 +12,8 @@ import CartItem from '../cart-items/CartItem.jsx'
 const CartDropdown = () => {
   const cartItems = useSelector((state) => state.cartItems.items);
 
+  console.log({cartItems})
+
   const cartTotal = cartItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0)
 
   const dispatch = useDispatch();
@@ -34,13 +36,21 @@ const CartDropdown = () => {
         }
         
       </CartItems>
-      <div>
-      <span>Total: ${cartTotal}</span>
-      <button onClick={goToCheckoutHandler}>Checkout</button>
+      <div className='flex justify-between py-2'>
+        <span>Total: ${cartTotal}</span>
+        <button onClick={goToCheckoutHandler} className='w-1/2 rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
+          Checkout
+        </button>
       </div>
-      <div className='flex-auto justify-stretch'>
-        <button onClick={() => dispatch(removeAllItems())}>Clear Cart</button>    
-        <button onClick={() => dispatch(toggleCartOpen())}>Close Cart</button>    
+      <div className='flex-auto'>
+        <button onClick={() => dispatch(removeAllItems())}
+          className='w-1/2 rounded-md border border-transparent bg-red-600 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-red-700'>
+            Clear Cart
+            </button>    
+        <button onClick={() => dispatch(toggleCartOpen())}
+          className='w-1/2 rounded-md border border-transparent bg-neutral-700 px-2 py-1 text-sm font-medium text-white shadow-sm hover:bg-neutral-800'>
+          Close Cart
+          </button>    
       </div>
     </CartDropdownContainer>
   )

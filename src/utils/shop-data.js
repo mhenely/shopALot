@@ -4,6 +4,7 @@ const SHOP_DATA = [
     items: [
       {
         id: 1,
+        category: 'national parks',
         name: 'Yellowstone',
         imageUrl: [
           'https://i.ibb.co/xsh7HSr/yellowstone1.jpg',
@@ -31,6 +32,7 @@ const SHOP_DATA = [
       },
       {
         id: 2,
+        category: 'national parks',
         name: 'Grand Canyon',
         imageUrl: [
           'https://i.ibb.co/QXKz0b1/grand-canyon1.jpg',
@@ -58,6 +60,7 @@ const SHOP_DATA = [
       },
       {
         id: 3,
+        category: 'national parks',
         name: 'Biscayne',
         imageUrl: [
           'https://i.ibb.co/nrbtgDs/biscayne1.webp',
@@ -85,6 +88,7 @@ const SHOP_DATA = [
       },
       {
         id: 4,
+        category: 'national parks',
         name: 'Crater Lake',
         imageUrl: [
           'https://i.ibb.co/5hJMzjg/craterlake1.webp',
@@ -112,6 +116,7 @@ const SHOP_DATA = [
       },
       {
         id: 5,
+        category: 'national parks',
         name: 'Cuyahoga',
         imageUrl: [
           'https://i.ibb.co/9qhRPvk/cuyahoga1.webp',
@@ -139,6 +144,7 @@ const SHOP_DATA = [
       },
       {
         id: 6,
+        category: 'national parks',
         name: 'Death Valley',
         imageUrl: [
           'https://i.ibb.co/9g6DD9J/death-Valley1.webp',
@@ -166,6 +172,7 @@ const SHOP_DATA = [
       },
       {
         id: 7,
+        category: 'national parks',
         name: 'Denali',
         imageUrl: [
           'https://i.ibb.co/KjpqX4b/deanli1.webp',
@@ -193,6 +200,7 @@ const SHOP_DATA = [
       },
       {
         id: 8,
+        category: 'national parks',
         name: 'Dry Tortuga',
         imageUrl: [
           'https://i.ibb.co/L0DtLy6/dry2.jpg',
@@ -220,6 +228,7 @@ const SHOP_DATA = [
       },
       {
         id: 9,
+        category: 'national parks',
         name: 'Acadia',
         imageUrl: [
           'https://i.ibb.co/ScxbR4r/acadia1.jpg',
@@ -247,6 +256,7 @@ const SHOP_DATA = [
       },
       {
         id: 10,
+        category: 'national parks',
         name: 'Redwood',
         imageUrl: [
           'https://i.ibb.co/xDJGHrw/redwood1.jpg',
@@ -274,6 +284,7 @@ const SHOP_DATA = [
       },
       {
         id: 11,
+        category: 'national parks',
         name: 'Rocky Mountain',
         imageUrl: [
           'https://i.ibb.co/hF1PXj0/rocky1.jpg',
@@ -301,6 +312,7 @@ const SHOP_DATA = [
       },
       {
         id: 12,
+        category: 'national parks',
         name: 'Saguaro',
         imageUrl: [
           'https://i.ibb.co/MphptZ8/saguaro1.jpg',
@@ -333,6 +345,7 @@ const SHOP_DATA = [
     items: [
       {
         id: 13,
+        category: 'sailing',
         name: 'Greece',
         imageUrl: [
           'https://i.ibb.co/Jmc3jTx/greece3.jpg',
@@ -360,6 +373,7 @@ const SHOP_DATA = [
       },
       {
         id: 14,
+        category: 'sailing',
         name: 'British Virgin Islands',
         imageUrl: [
           'https://i.ibb.co/BzmJw8Q/bvi1.jpg',
@@ -387,6 +401,7 @@ const SHOP_DATA = [
       },
       {
         id: 15,
+        category: 'sailing',
         name: 'Hawaii',
         imageUrl: [
           'https://i.ibb.co/2FQ1RbS/hawai1.png',
@@ -414,6 +429,7 @@ const SHOP_DATA = [
       },
       {
         id: 16,
+        category: 'sailing',
         name: 'Philippines',
         imageUrl: [
           'https://i.ibb.co/6ybtfnC/phil1.jpg',
@@ -441,6 +457,7 @@ const SHOP_DATA = [
       },
       {
         id: 17,
+        category: 'sailing',
         name: 'Australia',
         imageUrl: [
           'https://i.ibb.co/kQDkSxZ/aus1.jpg',
@@ -468,6 +485,7 @@ const SHOP_DATA = [
       },
       {
         id: 18,
+        category: 'sailing',
         name: 'France',
         imageUrl: [
           'https://i.ibb.co/LdggGjs/france1.jpg',
@@ -495,6 +513,7 @@ const SHOP_DATA = [
       },
       {
         id: 19,
+        category: 'sailing',
         name: 'South Africa',
         imageUrl: [
           'https://i.ibb.co/syBnqH2/south1.jpg',
@@ -522,6 +541,7 @@ const SHOP_DATA = [
       },
       {
         id: 20,
+        category: 'sailing',
         name: 'Brazil',
         imageUrl: [
           'https://i.ibb.co/HYXvDwG/brazil1.jpg',
@@ -554,6 +574,7 @@ const SHOP_DATA = [
     items: [
       {
         id: 21,
+        category: 'soccer',
         name: 'Liverpool at Anfield',
         imageUrl: [
           'https://i.ibb.co/98sC88N/anfield1.jpg',
@@ -581,6 +602,7 @@ const SHOP_DATA = [
       },
       {
         id: 22,
+        category: 'soccer',
         name: 'Barcelona at Camp Nou',
         imageUrl: [
           'https://i.ibb.co/4jnHP8V/barca1.webp',
@@ -608,6 +630,7 @@ const SHOP_DATA = [
       },
       {
         id: 23,
+        category: 'soccer',
         name: 'Dortmund at Wastfalenstadion',
         imageUrl: [
           'https://i.ibb.co/ySvGYSN/dort1.jpg',
@@ -635,6 +658,7 @@ const SHOP_DATA = [
       },
       {
         id: 24,
+        category: 'soccer',
         name: 'Brazil at Maracanã',
         imageUrl: [
           'https://i.ibb.co/dpbNQT0/mara1.jpg',
@@ -662,6 +686,7 @@ const SHOP_DATA = [
       },
       {
         id: 25,
+        category: 'soccer',
         name: 'Real Madrid at Santiago Bernabéu',
         imageUrl: [
           'https://i.ibb.co/qrGmxQF/madrid1.jpg',
@@ -689,6 +714,7 @@ const SHOP_DATA = [
       },
       {
         id: 26,
+        category: 'soccer',
         name: 'England at Wembley',
         imageUrl: [
           'https://i.ibb.co/fMYBHby/wemb1.png',
@@ -716,6 +742,7 @@ const SHOP_DATA = [
       },
       {
         id: 27,
+        category: 'soccer',
         name: 'Mexico at La Azteca',
         imageUrl: [
           'https://i.ibb.co/SDTwtnt/azteca1.jpg',
@@ -743,6 +770,7 @@ const SHOP_DATA = [
       },
       {
         id: 28,
+        category: 'soccer',
         name: 'Bayern Munich at Allianz',
         imageUrl: [
           'https://i.ibb.co/XZ2mZC3/bayern1.jpg',
@@ -775,6 +803,7 @@ const SHOP_DATA = [
     items: [
       {
         id: 29,
+        category: 'traveling',
         name: 'Paris',
         imageUrl: [
           'https://i.ibb.co/5W2F6gd/paris1.jpg',
@@ -802,6 +831,7 @@ const SHOP_DATA = [
       },
       {
         id: 30,
+        category: 'traveling',
         name: 'Sydney',
         imageUrl: [
           'https://i.ibb.co/m0cDJLb/sydney1.jpg',
@@ -829,6 +859,7 @@ const SHOP_DATA = [
       },
       {
         id: 31,
+        category: 'traveling',
         name: 'Rome',
         imageUrl: [
           'https://i.ibb.co/J5Zk3br/rome1.jpg',
@@ -856,6 +887,7 @@ const SHOP_DATA = [
       },
       {
         id: 32,
+        category: 'traveling',
         name: 'British Virgin Islands',
         imageUrl: [
           'https://i.ibb.co/gv02QRp/bvi1.png',
@@ -883,6 +915,7 @@ const SHOP_DATA = [
       },
       {
         id: 33,
+        category: 'traveling',
         name: 'Porto',
         imageUrl: [
           'https://i.ibb.co/JKtnQQ1/porto1.webp',
@@ -910,6 +943,7 @@ const SHOP_DATA = [
       },
       {
         id: 34,
+        category: 'traveling',
         name: 'Berlin',
         imageUrl: [
           'https://i.ibb.co/cCHPcbs/berlin1.jpg',
@@ -937,6 +971,7 @@ const SHOP_DATA = [
       },
       {
         id: 35,
+        category: 'traveling',
         name: 'Maui',
         imageUrl: [
           'https://i.ibb.co/2vcQCfw/maui1.jpg',
@@ -964,6 +999,7 @@ const SHOP_DATA = [
       },
       {
         id: 36,
+        category: 'traveling',
         name: 'Beijing',
         imageUrl: [
           'https://i.ibb.co/Z8bqdjp/beijing1.webp',
@@ -996,6 +1032,7 @@ const SHOP_DATA = [
     items: [
       {
         id: 37,
+        category: 'cooking',
         name: 'Carbonara',
         imageUrl: [
           'https://i.ibb.co/0QVNLCZ/carb1.webp', 
@@ -1023,6 +1060,7 @@ const SHOP_DATA = [
       },
       {
         id: 38,
+        category: 'cooking',
         name: 'Amatriciana',
         imageUrl: [
           'https://i.ibb.co/dgP6F0N/ama1.jpg', 
@@ -1050,6 +1088,7 @@ const SHOP_DATA = [
       },
       {
         id: 39,
+        category: 'cooking',
         name: 'Steak',
         imageUrl: [
           'https://i.ibb.co/GHkDjyq/steak1.jpg', 
@@ -1077,6 +1116,7 @@ const SHOP_DATA = [
       },
       {
         id: 40,
+        category: 'cooking',
         name: 'Tartiflette',
         imageUrl: [
           'https://i.ibb.co/PZc3q98/tart1.jpg', 
@@ -1104,6 +1144,7 @@ const SHOP_DATA = [
       },
       {
         id: 41,
+        category: 'cooking',
         name: 'Lasagna',
         imageUrl: [
           'https://i.ibb.co/gJyhsXV/lasa1.jpg', 
@@ -1131,6 +1172,7 @@ const SHOP_DATA = [
       },
       {
         id: 42,
+        category: 'cooking',
         name: 'Chicken Piccata',
         imageUrl: [
           'https://i.ibb.co/7R80r0v/picc1.webp', 
@@ -1158,6 +1200,7 @@ const SHOP_DATA = [
       },
       {
         id: 43,
+        category: 'cooking',
         name: 'Lamb',
         imageUrl: [
           'https://i.ibb.co/C7GXwP0/lamb1.jpg', 
@@ -1185,6 +1228,7 @@ const SHOP_DATA = [
       },
       {
         id: 44,
+        category: 'cooking',
         name: 'Fried Chicken',
         imageUrl: [
           'https://i.ibb.co/0cWFMCx/kfc1.jpg', 

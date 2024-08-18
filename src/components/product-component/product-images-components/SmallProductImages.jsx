@@ -12,8 +12,7 @@ const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
   
   const tooltipRef = useRef();
 
-  const testClick = (imageId, swapId) => {
-    console.log({imageId, swapId, imageSrc})
+  const clickToSwap = (imageId, swapId) => {
     handleClick(imageId, swapId)
   }
 
@@ -75,7 +74,7 @@ const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
     {isTooltipVisible && (
       <div
         ref={tooltipRef}
-        className={`fixed p-3.5 bg-black text-white rounded-lg shadow      text-sm font-semibold max-w-md ${showTooltipContent ? 'opacity-100' : 'opacity-0'}`}
+        className={`fixed p-3.5 bg-black text-white rounded-lg shadow text-sm font-semibold max-w-md ${showTooltipContent ? 'opacity-100' : 'opacity-0'}`}
         style={{
           top: tooltipPosition.y,
           left: tooltipPosition.x,
@@ -85,8 +84,8 @@ const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
         {'Click to make larger'}
       </div>
     )}
-    <img onClick={() => testClick(imageIdx, swapImage)}
-      alt="Kettle spout pouring boiling water into coffee grounds in pour-over mug."
+    <img onClick={() => clickToSwap(imageIdx, swapImage)}
+      alt={imageSrc}
       src={imageSrc}
       className="h-full w-full object-cover object-center cursor-help"
     />

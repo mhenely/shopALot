@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { removeAllItems, incrementItems, decrementItems, removeItem } from '../../features/cart/cartItems'
+import { useNavigate } from 'react-router-dom'
+import { incrementItems, decrementItems, removeItem } from '../../features/cart/cartItems'
 
 import { TrashIcon } from '@heroicons/react/20/solid'
 
@@ -13,6 +14,11 @@ const OrderSummary = () => {
   const total = Math.round(((subTotal ? ( Number(tax) + Number(subTotal) + shipping) : 0) * 100) / 100).toFixed(2);
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleNavigate = (category, name) => {
+    navigate(`/categories/${category}/${name.toLowerCase()}`)
+  }
 
   // get the category for each item
 
@@ -26,7 +32,7 @@ const OrderSummary = () => {
                 {checkoutItems.map((item) => (
                   <li key={item.id} className="flex px-4 py-6 sm:px-6">
                     <div className="flex-shrink-0">
-                      <img alt={item.name} src={item.imageUrl} className="w-20 rounded-md" />
+                      <img alt={item.name} src={item.imageUrl} onClick={() => handleNavigate(item.category, item.name)} className="w-20 rounded-md cursor-pointer" />
                     </div>
 
                     <div className="ml-6 flex flex-1 flex-col">
@@ -34,11 +40,11 @@ const OrderSummary = () => {
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
                             {/* LINK TO PRODUCT PAGE */}
-                            <a href={'placeholder'} className="font-medium text-gray-700 hover:text-gray-800">
+                            <span onClick={() => handleNavigate(item.category, item.name)} className="font-medium text-gray-700 hover:text-gray-800 cursor-pointer">
                               {item.name}
-                            </a>
+                            </span>
                           </h4>
-                          {/* <p className="mt-1 text-sm text-gray-500">{product.color}</p> */}
+                          <p className="mt-1 text-sm text-gray-500">{item.category}</p>
                         </div>
 
                         <div className="ml-4 flow-root flex-shrink-0">

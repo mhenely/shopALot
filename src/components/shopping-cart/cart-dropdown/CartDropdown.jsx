@@ -12,8 +12,6 @@ import CartItem from '../cart-items/CartItem.jsx'
 const CartDropdown = () => {
   const cartItems = useSelector((state) => state.cartItems.items);
 
-  console.log({cartItems})
-
   const cartTotal = cartItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0)
 
   const dispatch = useDispatch();

@@ -12,8 +12,6 @@ export const cartItemsSlice = createSlice({
 
       const { name, price, imageUrl, id, category } = action.payload; 
 
-      console.log({category})
-
       // check if item already in cart
       const existingItem = state.items.find(item => item.id === id)
         // if so, increment by 1

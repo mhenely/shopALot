@@ -7,8 +7,6 @@ import { CartItemContainer, ItemDetails } from "./cart-items.styles";
 const CartItem = ({ cartItem }) => {
   const { name, quantity, imageUrl, price, id, category } = cartItem;
 
-  console.log({category})
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

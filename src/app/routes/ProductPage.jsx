@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import ProductImages from "../../components/product-component/ProductImages";
-import SHOP_DATA from "../../utils/shop-data";
 
 const ProductPage = () => {
 
   const { productId, categoryId } = useParams()
 
-  const data = SHOP_DATA.find(data => categoryId === data.title.toLowerCase()).items.find(product => product.name.toLowerCase() === productId)
+  const shopData = useSelector(state => state.shopData.value)
+
+  const data = shopData.find(data => categoryId === data.title.toLowerCase()).items.find(product => product.name.toLowerCase() === productId)
   
 
   return (

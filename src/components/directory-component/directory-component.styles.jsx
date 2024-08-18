@@ -5,8 +5,8 @@ export const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-  // accessing prop imageUrl
-  background-image: ${({imageurl}) => `url(${imageurl})`};
+  // accessing prop imageUrl - temporarily changed method due to unknown error
+  // background-image: ${({imageurl}) => `url(${imageurl})`};
 `;
 
 
@@ -17,7 +17,8 @@ export const Body = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  order: 1px solid black;
+  border: 1px solid black;
+  border-radius: .25rem;
   background-color: white;
   opacity: 0.7;
   position: absolute;
@@ -34,8 +35,6 @@ export const Body = styled.div`
     font-size: 16px; 
   }
   &:hover { 
-    background-color: white; 
-    color: black; 
     border: 1px solid black; 
   }
 `;
@@ -54,6 +53,7 @@ export const DirectoryItemContainer = styled.div`
 
   &:hover {
       cursor: pointer;
+      opacity: .85
   }
 
   & ${BackgroundImage} {

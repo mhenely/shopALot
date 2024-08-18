@@ -6,6 +6,9 @@ import {
   createBrowserRouter
 } from 'react-router-dom'
 
+import { Provider } from 'react-redux'
+import store from './stores/store.js'
+
 import './index.css'
 import App from './app/App.jsx'
 import HomePage from './app/routes/Home.jsx'
@@ -14,6 +17,7 @@ import CategoryPreview from './app/routes/CategoryPreview.jsx'
 import ErrorPage from './app/routes/ErrorPage.jsx'
 import Category from './app/routes/Category.jsx'
 import ProductPage from './app/routes/ProductPage.jsx'
+import Checkout from './app/routes/Checkout.jsx'
 
 
 const router = createBrowserRouter([
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/products/:productId',
         element: <ProductPage />
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />
       }
     ]
   }
@@ -58,8 +66,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+    </Provider>
   </StrictMode>,
 )

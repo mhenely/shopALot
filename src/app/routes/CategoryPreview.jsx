@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux"
+
 import CategoryPreview from "../../components/category-preview/CategoryPreview"
 
-import SHOP_DATA from "../../utils/shop-data"
-
 const CategoryPreviewPage = () => {
+
+  const shopData = useSelector(state => state.shopData.value)
+
   return (
     <div>
       {
-        SHOP_DATA.map(({title, items}) => {
+        shopData.map(({title, items}) => {
           return <CategoryPreview key={title} products={items} title={title}/>
         })
       }

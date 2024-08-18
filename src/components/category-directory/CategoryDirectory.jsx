@@ -42,7 +42,7 @@ const CategoryDirectory = () => {
       <div className="mx-auto max-w-xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">Explore by Category</h2>
         <p className="mt-4 text-base text-gray-500">
-          Each category represents one of my interests. Browse through each to get an understanding of my favorites!
+          Each category represents one of my areas of interests. Browse through each to get an understanding of my favorites within each area!
         </p>
       <DirectoryContainer>
         {categories.map((category) => (

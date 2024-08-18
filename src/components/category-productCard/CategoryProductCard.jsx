@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { incrementItems } from "../../features/cart/cartItems";
 
 import { ProductCardContainer, Footer, Name, Price, Button } from "./category-product-card.styles";
 
 
 const CategoryProductCard = ({ product, category }) => {
-  const { name, price, imageUrl } = product;
+  const { name, price, imageUrl, id } = product;
 
   const navigate = useNavigate()
-
-  console.log({category})
+  const dispatch = useDispatch()
 
   const onNavigateHandler = () => { 
     
@@ -18,13 +19,17 @@ const CategoryProductCard = ({ product, category }) => {
       navigate(name.toLowerCase())
     }
   }
+
+  const addCartItem = () => {
+    dispatch(incrementItems({ name, price, imageUrl, id }))
+  }
   
 
   return (
     <ProductCardContainer>
       <img 
         onClick={onNavigateHandler}
-        src={imageUrl} 
+        src={imageUrl[0]} 
         alt={`${name}`}
         className="h-full w-full object-cover object-center group-hover:opacity-75 cursor-pointer rounded"
       />
@@ -32,7 +37,7 @@ const CategoryProductCard = ({ product, category }) => {
         <Name>{name}</Name>
         <Price>${price}</Price>
       </Footer>
-      <Button>add to cart</Button>
+      <Button onClick={addCartItem}>add to cart</Button>
     </ProductCardContainer>
   )
 }

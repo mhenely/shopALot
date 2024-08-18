@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { CategoryContainer, CategoryTitle } from "./category-page.styles";
+import { CategoryTitle } from "./category-page.styles";
 import CategoryProductCard from "../category-productCard/CategoryProductCard";
 
 // w/o backend, importing local shopData and using param to grab which category to populate w/ map
-import SHOP_DATA from "../../utils/shop-data";
-
 
 // receives the category info and maps cards of all items in category
 
@@ -13,7 +12,9 @@ const CategoryPage = () => {
 
   const { categoryId } = useParams()
 
-  const data = SHOP_DATA.find(category => category.title.toLowerCase() === categoryId)
+  const shopData = useSelector(state => state.shopData.value)
+
+  const data = shopData.find(category => category.title.toLowerCase() === categoryId)
 
   return (
     <div className="bg-white">

@@ -4,11 +4,11 @@ import Footer from "../components/Footer"
 
 const App = () => {
   return (
-    <div>
-    <Navbar />
-    <Outlet />
-    <Footer className='sticky bottom-0'/>
-    </div>
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer className='sticky bottom-0'/>
+    </>
   )
 }
 

@@ -10,11 +10,11 @@ const DirectoryComponent = ({ category }) => {
   const navigate = useNavigate()
 
   const onNavigateHandler = () => navigate(route)
-  // const style = {backgroundImage: `url(${imageSrc})`}
+  const style = {backgroundImage: `url(${imageSrc})`}
 
   return (
     <DirectoryItemContainer onClick={onNavigateHandler}>
-      <BackgroundImage imageurl={imageSrc}/>
+      <BackgroundImage style={style}/>
       <Body>
         <h2>{title}</h2>
         <p>Shop Now</p>

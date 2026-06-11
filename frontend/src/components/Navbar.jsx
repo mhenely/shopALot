@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
 
 import HomeLogo from "../assets/HomeLogo";
 import CartIcon from "./shopping-cart/cart-icon/CartIcon";
 import CartDropdown from "./shopping-cart/cart-dropdown/CartDropdown";
+import { logout } from "../features/auth/authSlice";
 
 const categories = [
   {
@@ -45,6 +46,8 @@ const categories = [
 const Navbar = () => {
 
   const isCartOpen = useSelector(state => state.cartDropdown.value)
+  const user = useSelector(state => state.auth.user)
+  const dispatch = useDispatch()
 
   const [ categoryDropdown, setCategoryDropdown ] = useState(false)
 
@@ -67,9 +70,25 @@ const Navbar = () => {
               </div>
             </div>
           </li>
-          <li>
-            <Link to="/authentication" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Authentication</Link>
-          </li>
+          {
+            user
+              ? (
+                <li className="flex items-center gap-3">
+                  <span className="block py-2 px-3 text-gray-900 md:p-0 dark:text-white">Hi, {user.name || user.username}</span>
+                  <button
+                    onClick={() => dispatch(logout())}
+                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              )
+              : (
+                <li>
+                  <Link to="/authentication" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Authentication</Link>
+                </li>
+              )
+          }
         <CartIcon />
         { isCartOpen && <CartDropdown />}
         </ul>

@@ -1,30 +1,50 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
+import { loginUser, registerUser } from "../../features/auth/authSlice"
 
 const defaultFormField = {
-  email: '',
+  username: '',
+  name: '',
   password: ''
 }
 
 const AuthenticationComponent = ({ purpose }) => {
 
   const [ formFields, setFormFields ] = useState(defaultFormField)
+  const [ error, setError ] = useState(null)
+  const [ submitting, setSubmitting ] = useState(false)
 
-  const { email, password } = formFields;
+  const { username, name, password } = formFields;
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const isSignIn = purpose === 'signIn'
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
+    setSubmitting(true)
 
-    if (purpose === 'signIn') {
-      console.log({purpose, should: 'SignIn'})
+    const action = isSignIn
+      ? loginUser({ username, password })
+      : registerUser({ username, name, password })
+
+    const result = await dispatch(action)
+    setSubmitting(false)
+
+    if (result.meta.requestStatus === 'fulfilled') {
+      setFormFields(defaultFormField)
+      navigate('/')
     } else {
-      console.log({purpose, should: 'SignUp'})
+      setError(result.payload)
     }
-    console.log({formFields})
-    setFormFields(defaultFormField)
   }
 
   const handleChange = (e) =>{
-    const { name, value } = e.target 
+    const { name, value } = e.target
     setFormFields({...formFields, [name]: value})
   }
 
@@ -47,21 +67,40 @@ const AuthenticationComponent = ({ purpose }) => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
               </label>
               <div className="mt-2">
                 <input
-                  name="email"
-                  type="email"
+                  name="username"
+                  type="text"
                   required
-                  autoComplete="email"
+                  minLength={4}
+                  autoComplete="username"
                   onChange={handleChange}
-                  value={email}
+                  value={username}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
+
+            {!isSignIn && (
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                  Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    onChange={handleChange}
+                    value={name}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+            )}
 
             <div>
               <div className="flex items-center justify-between">
@@ -74,7 +113,7 @@ const AuthenticationComponent = ({ purpose }) => {
                   name="password"
                   type="password"
                   required
-                  autoComplete="current-password"
+                  autoComplete={isSignIn ? 'current-password' : 'new-password'}
                   onChange={handleChange}
                   value={password}
                   minLength={5}
@@ -83,12 +122,17 @@ const AuthenticationComponent = ({ purpose }) => {
               </div>
             </div>
 
+            {error && (
+              <p className="text-sm text-red-600" role="alert">{error}</p>
+            )}
+
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                disabled={submitting}
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50"
               >
-                {purpose === 'signIn' ? 'Sign In' : 'Sign Up'}
+                {submitting ? 'Please wait…' : isSignIn ? 'Sign In' : 'Sign Up'}
               </button>
             </div>
           </form>

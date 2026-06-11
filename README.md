@@ -1,5 +1,7 @@
 # shopALot 🛒
 
+[![CI](https://github.com/mhenely/shopALot/actions/workflows/ci.yml/badge.svg)](https://github.com/mhenely/shopALot/actions/workflows/ci.yml)
+
 A full-stack **MERN** e-commerce application — browse a catalog by category, manage a
 shopping cart that survives login and page reloads, and check out. Built to practice
 production-shaped patterns end to end: a REST API, JWT authentication, server-synced

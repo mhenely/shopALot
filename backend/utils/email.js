@@ -62,13 +62,19 @@ const sendOrderConfirmation = async ({ to, items, total }) => {
     })
   }
 
-  return getResend().emails.send({
+  // Resend returns errors as a value (it doesn't throw), so surface them as a throw
+  // — otherwise a rejected send (e.g. unverified domain) would look like a success.
+  const { data, error } = await getResend().emails.send({
     from: FROM,
     to,
     subject: 'Your shopALot order confirmation',
     html: orderHtml(items, total),
     attachments,
   })
+  if (error) {
+    throw new Error(error.message || JSON.stringify(error))
+  }
+  return data
 }
 
 module.exports = { sendOrderConfirmation }

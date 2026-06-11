@@ -19,7 +19,6 @@ const CartItem = ({ cartItem }) => {
       <img src={imageUrl?.[0]} alt={`${name}`} onClick={handleNavigate} className="cursor-pointer"/>
       <ItemDetails>
         <span>{name}</span>
-        {/* <span>{quantity} x ${price} = ${quantity * price}</span> */}
         <span>${quantity * price}</span>
       </ItemDetails>
       <span className="cursor-pointer" onClick={() => dispatch(decrementItems(id))}>&#10094;</span>

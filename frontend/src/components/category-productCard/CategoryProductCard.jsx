@@ -11,10 +11,7 @@ const CategoryProductCard = ({ product, category }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const onNavigateHandler = () => { 
-
-    console.log()
-    
+  const onNavigateHandler = () => {
     if (category) {
       navigate(`${category}/${name.toLowerCase()}`)
     } else {

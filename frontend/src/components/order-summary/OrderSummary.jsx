@@ -39,7 +39,6 @@ const OrderSummary = () => {
                       <div className="flex">
                         <div className="min-w-0 flex-1">
                           <h4 className="text-sm">
-                            {/* LINK TO PRODUCT PAGE */}
                             <span onClick={() => handleNavigate(item.category, item.name)} className="font-medium text-gray-700 hover:text-gray-800 cursor-pointer">
                               {item.name}
                             </span>

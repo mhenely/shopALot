@@ -61,7 +61,7 @@ const AuthenticationComponent = ({ purpose }) => {
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             {
-              purpose === 'signIn' ? 'Sign in to your account' : 'Sign up with an email and password'
+              purpose === 'signIn' ? 'Sign in to your account' : 'Sign up with a username and password'
             }
           </h2>
         </div>

@@ -1,12 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { incrementItems } from "../../features/cart/cartItems";
 
-import Button from "../Button";
-
-
 const CategoryProductCard = ({ product, category }) => {
-  const { name, price, imageUrl, id } = product;
+  const { name, price, imageUrl, subcategory } = product;
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -19,29 +16,38 @@ const CategoryProductCard = ({ product, category }) => {
     }
   }
 
-  const addCartItem = () => {
-    dispatch(incrementItems(product))
-  }
-  
+  const addCartItem = () => dispatch(incrementItems(product))
 
   return (
-    <div className="w-full flex flex-col h-[350px] items-center relative group">
-      <img
-        onClick={onNavigateHandler}
-        src={imageUrl?.[0]}
-        alt={name}
-        className="w-full h-[95%] object-cover object-center mb-[5px] rounded cursor-pointer group-hover:opacity-80"
-      />
-      <div className="w-full h-[5%] flex justify-between text-lg">
-        <span className="mt-1 text-sm leading-5 text-gray-700">{name}</span>
-        <span className="mt-1 text-lg leading-7 font-medium text-gray-900">${price}</span>
+    <div className="group">
+      <div className="relative overflow-hidden rounded-sm bg-clay-100">
+        <img
+          onClick={onNavigateHandler}
+          src={imageUrl?.[0]}
+          alt={name}
+          className="aspect-[5/6] w-full cursor-pointer object-cover transition duration-500 group-hover:scale-105"
+        />
+        <button
+          onClick={addCartItem}
+          className="absolute inset-x-3 bottom-3 translate-y-2 bg-clay-700 py-2 text-xs font-semibold uppercase tracking-wide text-cream opacity-0 transition hover:bg-clay-900 group-hover:translate-y-0 group-hover:opacity-100"
+        >
+          Add to cart
+        </button>
       </div>
-      <Button
-        onClick={addCartItem}
-        className="w-4/5 absolute top-[255px] opacity-70 hidden group-hover:flex group-hover:opacity-90"
-      >
-        add to cart
-      </Button>
+      <div className="mt-3 flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <h3
+            onClick={onNavigateHandler}
+            className="cursor-pointer truncate font-serif text-lg hover:text-clay-700"
+          >
+            {name}
+          </h3>
+          {subcategory && (
+            <p className="text-xs uppercase tracking-wide text-ink/40">{subcategory}</p>
+          )}
+        </div>
+        <p className="whitespace-nowrap font-semibold text-clay-700">${price}</p>
+      </div>
     </div>
   )
 }

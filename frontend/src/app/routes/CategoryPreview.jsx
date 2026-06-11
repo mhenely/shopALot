@@ -16,11 +16,15 @@ const CategoryPreviewPage = () => {
   }
 
   return (
-    <div>
+    <div className="pb-12">
+      <div className="mx-auto max-w-6xl px-6 pt-12">
+        <p className="font-serif text-lg italic text-clay-600">A few of my favorite things —</p>
+        <h1 className="mt-2 font-serif text-4xl font-semibold tracking-tight">Shop by category</h1>
+      </div>
       {
-        shopData.map(({title, items}) => {
-          return <CategoryPreview key={title} products={items} title={title}/>
-        })
+        shopData.map(({ title, items }) => (
+          <CategoryPreview key={title} products={items} title={title} />
+        ))
       }
     </div>
   )

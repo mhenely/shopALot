@@ -35,6 +35,9 @@ const shopItemSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
   },
+  // Optional grouping within a category (e.g. "Liverpool", "Italian"). Powers the
+  // in-page filter chips on the category page; chips stay hidden until items have one.
+  subcategory: String,
   imageUrl: [String],
   price: Number,
   // features is an object with two key/value pairs

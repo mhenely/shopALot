@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 
 import { CategoryTitle } from "./category-page.styles";
 import CategoryProductCard from "../category-productCard/CategoryProductCard";
-
-// w/o backend, importing local shopData and using param to grab which category to populate w/ map
+import StatusScreen from "../StatusScreen";
 
 // receives the category info and maps cards of all items in category
 
@@ -12,9 +11,21 @@ const CategoryPage = () => {
 
   const { categoryId } = useParams()
 
-  const shopData = useSelector(state => state.shopData.value)
+  const { value: shopData, status, error } = useSelector(state => state.shopData)
 
   const data = shopData.find(category => category.title.toLowerCase() === categoryId)
+
+  if (status === 'loading' || status === 'idle') {
+    return <StatusScreen>Loading…</StatusScreen>
+  }
+
+  if (status === 'failed') {
+    return <StatusScreen>Couldn’t load products: {error}</StatusScreen>
+  }
+
+  if (!data) {
+    return <StatusScreen>Category “{categoryId}” not found.</StatusScreen>
+  }
 
   return (
     <div className="bg-white">

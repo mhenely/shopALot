@@ -4,16 +4,29 @@ import { incrementItems } from "../../features/cart/cartItems";
 
 import ProductImages from "../../components/product-component/ProductImages";
 import { Button } from "../../components/category-productCard/category-product-card.styles";
+import StatusScreen from "../../components/StatusScreen";
 
 const ProductPage = () => {
 
   const { productId, categoryId } = useParams()
   const dispatch = useDispatch()
 
-  const shopData = useSelector(state => state.shopData.value)
+  const { value: shopData, status, error } = useSelector(state => state.shopData)
 
-  const data = shopData.find(data => categoryId === data.title.toLowerCase()).items.find(product => product.name.toLowerCase() === productId)
-  
+  const category = shopData.find(data => categoryId === data.title.toLowerCase())
+  const data = category?.items.find(product => product.name.toLowerCase() === productId)
+
+  if (status === 'loading' || status === 'idle') {
+    return <StatusScreen>Loading…</StatusScreen>
+  }
+
+  if (status === 'failed') {
+    return <StatusScreen>Couldn’t load this product: {error}</StatusScreen>
+  }
+
+  if (!data) {
+    return <StatusScreen>Product not found.</StatusScreen>
+  }
 
   return (
     <div className="bg-white">

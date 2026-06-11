@@ -10,6 +10,7 @@ const CONTACT = {
   site: "https://matthenely.com",
   linkedin: "https://www.linkedin.com/in/matt-henely/",
   github: "https://github.com/mhenely",
+  repo: "https://github.com/mhenely/shopALot",
   email: "henely.matt@gmail.com",
 }
 
@@ -46,7 +47,7 @@ const AboutPage = () => {
               >
                 Browse the shop
               </Link>
-              <a href={CONTACT.github} className="border-b-2 border-clay-600 pb-1 text-sm font-semibold text-clay-700">
+              <a href={CONTACT.repo} className="border-b-2 border-clay-600 pb-1 text-sm font-semibold text-clay-700">
                 See the code on GitHub →
               </a>
             </div>

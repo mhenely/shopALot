@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import OrderSummary from '../../components/order-summary/OrderSummary'
 import { createCheckoutSession } from '../../api/checkout'
@@ -7,6 +7,17 @@ export default function CheckoutPage() {
   const cartItems = useSelector((state) => state.cartItems.items)
   const [redirecting, setRedirecting] = useState(false)
   const [error, setError] = useState(null)
+
+  // If the user hits "back" from Stripe, the browser may restore this page from
+  // the bfcache with `redirecting` still true (button stuck on "Redirecting…").
+  // The pageshow event fires on that restore — re-enable the button.
+  useEffect(() => {
+    const onPageShow = (e) => {
+      if (e.persisted) setRedirecting(false)
+    }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
 
   // Build a Stripe Checkout Session on the server, then redirect to Stripe's hosted page.
   // The cart is cleared on the /checkout/success page once payment completes.

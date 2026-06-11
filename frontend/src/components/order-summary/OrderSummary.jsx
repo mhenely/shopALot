@@ -4,7 +4,7 @@ import { incrementItems, decrementItems, removeItem } from '../../features/cart/
 
 import { TrashIcon } from '@heroicons/react/20/solid'
 
-const OrderSummary = () => {
+const OrderSummary = ({ redirecting = false }) => {
 
   const checkoutItems = useSelector(state => state.cartItems.items)
 
@@ -99,10 +99,10 @@ const OrderSummary = () => {
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <button
                   type="submit"
-                  disabled={!checkoutItems.length}
+                  disabled={!checkoutItems.length || redirecting}
                   className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 disabled:opacity-50 disabled:hover:bg-indigo-600"
                 >
-                  Confirm order
+                  {redirecting ? 'Redirecting to checkout…' : 'Proceed to payment'}
                 </button>
               </div>
             </div>

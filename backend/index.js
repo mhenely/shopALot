@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const app = require('./app')
-const config = require('./utils/config')
+const config = require('./utils/config') // loads dotenv — must come before ./app so its
+const app = require('./app')             // modules see env vars at import time (local dev)
 const logger = require('./utils/logger')
 
 mongoose.set('strictQuery', false)

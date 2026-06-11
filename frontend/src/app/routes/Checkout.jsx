@@ -26,26 +26,25 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="bg-gray-50">
-      <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="sr-only">Checkout</h2>
+    <main className="mx-auto max-w-5xl px-6 pb-16 pt-12">
+      <h1 className="font-serif text-4xl font-semibold tracking-tight">Checkout</h1>
 
-        <div className="mb-8 rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          <p className="font-semibold">Demo store — Stripe test mode</p>
-          <p className="mt-1">
-            This is a portfolio project, so no real payment is taken. On the next page, use test card
-            4242 4242 4242 4242, any future expiry date, and any 3-digit CVC.
-          </p>
-        </div>
-
-        {error && (
-          <p className="mb-6 text-center text-sm text-red-600" role="alert">{error}</p>
-        )}
-
-        <form onSubmit={handlePlaceOrder} className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
-          <OrderSummary redirecting={redirecting} />
-        </form>
+      <div className="mt-6 flex gap-3 rounded-sm border border-clay-100 bg-white/60 px-5 py-4 text-sm text-ink/70">
+        <span className="font-serif text-lg italic text-clay-600">Demo —</span>
+        <p>
+          This is a portfolio project, so no real payment is taken. On Stripe’s page, use test card{' '}
+          <span className="font-medium text-ink">4242 4242 4242 4242</span>, any future expiry date, and any
+          3-digit CVC.
+        </p>
       </div>
-    </div>
+
+      {error && (
+        <p className="mt-6 text-sm text-red-700" role="alert">{error}</p>
+      )}
+
+      <form onSubmit={handlePlaceOrder} className="mt-10">
+        <OrderSummary redirecting={redirecting} />
+      </form>
+    </main>
   )
 }

@@ -3,7 +3,6 @@ import { toggleCartOpen } from '../../../features/cart/cartDropdownSlice.js';
 
 import ShoppingCartIcon from '../../../assets/ShoppingCartIcon';
 
-
 const CartIcon = () => {
 
   const cartItems = useSelector((state) => state.cartItems.items)
@@ -16,10 +15,14 @@ const CartIcon = () => {
       type="button"
       onClick={() => dispatch(toggleCartOpen())}
       aria-label={`Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}`}
-      className="w-[45px] h-[45px] relative flex items-center justify-center cursor-pointer"
+      className="relative flex h-10 w-10 items-center justify-center text-ink hover:text-clay-700"
     >
-      <ShoppingCartIcon/>
-      <span className="relative text-[10px] font-bold bottom-[12px] text-black">{cartCount}</span>
+      <ShoppingCartIcon />
+      {cartCount > 0 && (
+        <span className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-clay-600 text-[11px] font-bold text-cream">
+          {cartCount}
+        </span>
+      )}
     </button>
   )
 }

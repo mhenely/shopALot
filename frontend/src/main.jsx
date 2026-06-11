@@ -19,6 +19,7 @@ import Category from './app/routes/Category.jsx'
 import ProductPage from './app/routes/ProductPage.jsx'
 import Checkout from './app/routes/Checkout.jsx'
 import CheckoutSuccess from './app/routes/CheckoutSuccess.jsx'
+import AboutPage from './app/routes/About.jsx'
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/authentication',
         element: <AuthenticationPage />
+      },
+      {
+        path: '/about',
+        element: <AboutPage />
       },
       {
         path: '/categories/:categoryId/:productId',

@@ -39,11 +39,13 @@ const Navbar = () => {
             </div>
           </div>
 
+          <Link to="/about" className="font-medium text-ink/70 hover:text-clay-700">About</Link>
+
           {
             user
               ? (
                 <div className="flex items-center gap-4">
-                  <span className="hidden text-ink/60 sm:inline">Hi, {user.name || user.username}</span>
+                  <Link to="/authentication" className="hidden text-ink/60 hover:text-clay-700 sm:inline">Hi, {user.name || user.username}</Link>
                   <button
                     onClick={() => dispatch(logout())}
                     className="font-medium text-ink/70 hover:text-clay-700"

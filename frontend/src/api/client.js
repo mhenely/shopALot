@@ -23,6 +23,27 @@ export const clearUser = () => {
   localStorage.removeItem(USER_STORAGE_KEY)
 }
 
+// Demo-account credentials are kept client-side so the "Your demo account" panel
+// can show them again (to return from another device / after logout). These are
+// throwaway accounts with no real data, so storing them locally is acceptable.
+export const DEMO_CREDS_KEY = 'shopalot-demo-creds'
+
+export const loadDemoCreds = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DEMO_CREDS_KEY))
+  } catch {
+    return null
+  }
+}
+
+export const saveDemoCreds = (creds) => {
+  localStorage.setItem(DEMO_CREDS_KEY, JSON.stringify(creds))
+}
+
+export const clearDemoCreds = () => {
+  localStorage.removeItem(DEMO_CREDS_KEY)
+}
+
 // Attach the JWT from localStorage to every request, when present.
 client.interceptors.request.use((config) => {
   const user = loadUser()

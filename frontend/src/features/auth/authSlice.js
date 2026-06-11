@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../api/auth";
-import { loadUser, saveUser, clearUser } from "../../api/client";
+import { login, register, demoLogin } from "../../api/auth";
+import { loadUser, saveUser, clearUser, saveDemoCreds, clearDemoCreds } from "../../api/client";
 
 // Pull a readable message out of an axios error.
 const errorMessage = (error) =>
@@ -34,6 +34,23 @@ export const registerUser = createAsyncThunk(
   }
 )
 
+// Provision + sign into a throwaway demo account. We persist the returned
+// credentials so the "Your demo account" panel can show them again later.
+export const enterDemo = createAsyncThunk(
+  'auth/enterDemo',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { token, username, name, password } = await demoLogin()
+      const user = { token, username, name }
+      saveUser(user)
+      saveDemoCreds({ username, password })
+      return user
+    } catch (error) {
+      return rejectWithValue(errorMessage(error))
+    }
+  }
+)
+
 const initialState = {
   user: loadUser(), // { token, username, name } or null
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -46,6 +63,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       clearUser()
+      clearDemoCreds()
       state.user = null
       state.status = 'idle'
       state.error = null
@@ -74,6 +92,18 @@ const authSlice = createSlice({
         state.user = action.payload
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.payload
+      })
+      .addCase(enterDemo.pending, (state) => {
+        state.status = 'loading'
+        state.error = null
+      })
+      .addCase(enterDemo.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.user = action.payload
+      })
+      .addCase(enterDemo.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.payload
       })

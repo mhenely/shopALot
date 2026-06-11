@@ -20,28 +20,29 @@ const isLoggedIn = (getState) => Boolean(getState().auth.user)
 
 // Server cart lines ({ quantity, item }) -> the flattened { ...item, quantity }
 // shape the cart UI consumes. category is reduced to its title for navigation.
-const flattenServerCart = (lines) =>
+// Exported for unit testing.
+export const flattenServerCart = (lines) =>
   lines.map((line) => ({
     ...line.item,
     category: line.item.category?.title ?? line.item.category,
     quantity: line.quantity,
   }))
 
-// Pure guest-cart transforms (mirror the old reducer behaviour).
-const localIncrement = (items, product) => {
+// Pure guest-cart transforms (mirror the old reducer behaviour). Exported for unit testing.
+export const localIncrement = (items, product) => {
   const existing = items.find((i) => i.id === product.id)
   if (existing) {
     return items.map((i) => (i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i))
   }
   return [...items, { ...product, quantity: 1 }]
 }
-const localDecrement = (items, id) => {
+export const localDecrement = (items, id) => {
   const existing = items.find((i) => i.id === id)
   if (!existing) return items
   if (existing.quantity <= 1) return items.filter((i) => i.id !== id)
   return items.map((i) => (i.id === id ? { ...i, quantity: i.quantity - 1 } : i))
 }
-const localRemove = (items, id) => items.filter((i) => i.id !== id)
+export const localRemove = (items, id) => items.filter((i) => i.id !== id)
 
 export const incrementItems = createAsyncThunk('cart/increment', async (product, { getState }) => {
   if (isLoggedIn(getState)) {

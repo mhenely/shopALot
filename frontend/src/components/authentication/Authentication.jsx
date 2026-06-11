@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 import { loginUser, registerUser } from "../../features/auth/authSlice"
+import { mergeGuestCart } from "../../features/cart/cartItems"
 
 const defaultFormField = {
   username: '',
@@ -36,6 +37,7 @@ const AuthenticationComponent = ({ purpose }) => {
     setSubmitting(false)
 
     if (result.meta.requestStatus === 'fulfilled') {
+      await dispatch(mergeGuestCart())
       setFormFields(defaultFormField)
       navigate('/')
     } else {

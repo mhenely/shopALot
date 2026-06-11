@@ -12,9 +12,16 @@ cartRouter.use((request, response, next) => {
   next()
 })
 
+// Populate each cart line's item, plus that item's category title, so cart
+// responses are self-describing (the frontend uses the title for navigation).
+const CART_POPULATE = {
+  path: 'cart.item',
+  populate: { path: 'category', select: 'title' },
+}
+
 // Load the requesting user, with each cart line's item populated.
 const getUserWithCart = (request) =>
-  User.findById(request.decodedToken.id).populate('cart.item')
+  User.findById(request.decodedToken.id).populate(CART_POPULATE)
 
 // GET /cart -> the current user's populated cart
 cartRouter.get('/', async (request, response, next) => {
@@ -50,7 +57,7 @@ cartRouter.post('/', async (request, response, next) => {
     }
 
     await user.save()
-    await user.populate('cart.item')
+    await user.populate(CART_POPULATE)
     response.status(200).json(user.cart)
   }
   catch (error) {
@@ -81,7 +88,7 @@ cartRouter.patch('/', async (request, response, next) => {
     }
 
     await user.save()
-    await user.populate('cart.item')
+    await user.populate(CART_POPULATE)
     response.status(200).json(user.cart)
   }
   catch (error) {
@@ -98,7 +105,7 @@ cartRouter.delete('/:itemId', async (request, response, next) => {
     user.cart = user.cart.filter(line => line.item.toString() !== itemId)
 
     await user.save()
-    await user.populate('cart.item')
+    await user.populate(CART_POPULATE)
     response.status(200).json(user.cart)
   }
   catch (error) {

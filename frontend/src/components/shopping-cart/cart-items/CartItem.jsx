@@ -16,7 +16,7 @@ const CartItem = ({ cartItem }) => {
 
   return (
     <CartItemContainer>
-      <img src={imageUrl} alt={`${name}`} onClick={handleNavigate} className="cursor-pointer"/>
+      <img src={imageUrl?.[0]} alt={`${name}`} onClick={handleNavigate} className="cursor-pointer"/>
       <ItemDetails>
         <span>{name}</span>
         {/* <span>{quantity} x ${price} = ${quantity * price}</span> */}

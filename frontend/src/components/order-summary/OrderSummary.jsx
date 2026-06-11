@@ -32,7 +32,7 @@ const OrderSummary = () => {
                 {checkoutItems.map((item) => (
                   <li key={item.id} className="flex px-4 py-6 sm:px-6">
                     <div className="flex-shrink-0">
-                      <img alt={item.name} src={item.imageUrl} onClick={() => handleNavigate(item.category, item.name)} className="w-20 rounded-md cursor-pointer" />
+                      <img alt={item.name} src={item.imageUrl?.[0]} onClick={() => handleNavigate(item.category, item.name)} className="w-20 rounded-md cursor-pointer" />
                     </div>
 
                     <div className="ml-6 flex flex-1 flex-col">

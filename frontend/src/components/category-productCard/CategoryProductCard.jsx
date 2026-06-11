@@ -28,7 +28,7 @@ const CategoryProductCard = ({ product, category }) => {
     <div className="w-full flex flex-col h-[350px] items-center relative group">
       <img
         onClick={onNavigateHandler}
-        src={imageUrl[0]}
+        src={imageUrl?.[0]}
         alt={name}
         className="w-full h-[95%] object-cover object-center mb-[5px] rounded cursor-pointer group-hover:opacity-80"
       />

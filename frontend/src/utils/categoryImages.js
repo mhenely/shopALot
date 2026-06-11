@@ -1,18 +1,16 @@
-// Curated hero images for each category, imported so Vite bundles + hashes them
-// (works in production, unlike the raw src/assets paths). Keyed by category title
-// (lowercase, matching the API). Category data itself comes from the API.
-import cooking from '../assets/food.jpeg'
-import nationalParks from '../assets/parks.webp'
-import sailing from '../assets/sailing.jpeg'
-import soccer from '../assets/soccer.jpeg'
-import traveling from '../assets/travel.png'
+// Category art for the home hero, imported so Vite bundles + hashes them.
+// Keyed by category title (lowercase, matching the API). These are temporary
+// stand-ins reusing existing assets — swap in real images per category.
+import sports from '../assets/soccer.jpeg'
+import food from '../assets/food.jpeg'
+import travel from '../assets/travel.png'
+import hobbies from '../assets/sailing.jpeg'
 
 const categoryImages = {
-  cooking,
-  'national parks': nationalParks,
-  sailing,
-  soccer,
-  traveling,
+  sports,
+  food,
+  'travel related': travel,
+  hobbies,
 }
 
 export default categoryImages

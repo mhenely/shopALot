@@ -8,13 +8,13 @@ const Category = require('../models/category')
 const ShopItem = require('../models/shopItem')
 const SHOP_DATA = require('../utils/shopData')
 
-// imageSrc per category (matches the values already used in the app).
+// imageSrc per category. Cosmetic only — the storefront resolves its own category
+// art via frontend/src/utils/categoryImages.js. Add real URLs here if you use it.
 const categoryImages = {
-  'national parks': 'https://cdn.outsideonline.com/wp-content/uploads/2021/04/13/arches-best-time-visit_h.jpg?width=800',
-  'sailing': 'src/assets/sailing.jpeg',
-  'soccer': 'src/assets/soccer.jpeg',
-  'traveling': 'src/assets/travel.png',
-  'cooking': 'src/assets/food.jpeg',
+  sports: '',
+  food: '',
+  'travel related': '',
+  hobbies: '',
 }
 
 const seed = async () => {
@@ -41,6 +41,7 @@ const seed = async () => {
       name: item.name,
       price: item.price,
       imageUrl: item.imageUrl,
+      subcategory: item.subcategory,
       features: item.features,
       category: category._id,
     }))

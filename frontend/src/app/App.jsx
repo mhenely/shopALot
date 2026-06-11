@@ -24,7 +24,7 @@ const App = () => {
     <>
       <Navbar />
       <Outlet />
-      <Footer className='sticky bottom-0'/>
+      <Footer />
     </>
   )
 }

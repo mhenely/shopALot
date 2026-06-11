@@ -1,6 +1,4 @@
 const { Resend } = require('resend')
-const fs = require('fs')
-const path = require('path')
 
 // Lazy singleton so importing this module never requires a key (tests/CI run without one).
 let resend
@@ -9,12 +7,10 @@ const getResend = () => {
   return resend
 }
 
-// Sender must be on a domain verified in Resend (e.g. matthenely.com).
-// Read lazily (at send time, not import time) so it's correct regardless of when dotenv loads.
+// Read lazily (at send time, not import time) so they're correct regardless of when dotenv loads.
 const getFrom = () => process.env.FROM_EMAIL || 'shopALot <onboarding@resend.dev>'
-
-// Optional resume PDF. If present it's attached; if not, the email still sends.
-const RESUME_PATH = path.join(__dirname, '..', 'assets', 'resume.pdf')
+// Link to a hosted resume (e.g. on matthenely.com) — kept out of the public repo on purpose.
+const getResumeUrl = () => process.env.RESUME_URL || null
 
 // Contact details surfaced in the email
 const CONTACT = {
@@ -25,7 +21,7 @@ const CONTACT = {
   github: 'https://github.com/mhenely',
 }
 
-const orderHtml = (items, total) => `
+const orderHtml = (items, total, resumeUrl) => `
   <div style="font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 560px; margin: 0 auto; color: #1f2937;">
     <h2 style="margin-bottom: 4px;">Thanks for your order! 🛒</h2>
     <p style="color: #6b7280; margin-top: 0;">This is a confirmation from <strong>shopALot</strong>.</p>
@@ -43,8 +39,9 @@ const orderHtml = (items, total) => `
     <div style="background:#f9fafb; border:1px solid #eee; border-radius:8px; padding:16px; margin-top:8px;">
       <p style="margin:0 0 8px;"><strong>👋 A quick note:</strong> shopALot is a full-stack portfolio
       project built by <strong>${CONTACT.name}</strong>. No real payment was processed — this runs in
-      Stripe test mode. My resume is attached, and I'd love to connect:</p>
+      Stripe test mode. I'd love to connect:</p>
       <p style="margin:0;">
+        ${resumeUrl ? `<a href="${resumeUrl}">View my resume</a><br/>` : ''}
         <a href="${CONTACT.site}">${CONTACT.site}</a><br/>
         <a href="${CONTACT.linkedin}">LinkedIn</a> &nbsp;·&nbsp;
         <a href="${CONTACT.github}">GitHub</a><br/>
@@ -55,22 +52,13 @@ const orderHtml = (items, total) => `
 
 // items: [{ name, quantity, price }], total: string
 const sendOrderConfirmation = async ({ to, items, total }) => {
-  const attachments = []
-  if (fs.existsSync(RESUME_PATH)) {
-    attachments.push({
-      filename: 'Matt-Henely-Resume.pdf',
-      content: fs.readFileSync(RESUME_PATH).toString('base64'),
-    })
-  }
-
   // Resend returns errors as a value (it doesn't throw), so surface them as a throw
   // — otherwise a rejected send (e.g. unverified domain) would look like a success.
   const { data, error } = await getResend().emails.send({
     from: getFrom(),
     to,
     subject: 'Your shopALot order confirmation',
-    html: orderHtml(items, total),
-    attachments,
+    html: orderHtml(items, total, getResumeUrl()),
   })
   if (error) {
     throw new Error(error.message || JSON.stringify(error))

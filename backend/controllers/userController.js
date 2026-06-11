@@ -31,7 +31,7 @@ userRouter.get('/', async (request, response, next) => {
 
   try {
     const users = await User.find({}).populate('cart')
-    response.status(204).json(users)
+    response.status(200).json(users)
   }
   catch (error) {
     next(error)

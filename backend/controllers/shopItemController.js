@@ -36,8 +36,8 @@ shopItemRouter.post('/', async (request, response, next) => {
     // FOR INSERTING ALL SHOP DATA INTO DB
     // const savedShopItems = ShopItem.insertMany(newShopItems)
     // response.status(200).json(savedShopItems)
-    const savedShopItem = newShopItem.save()
-    response.status(200).json(savedShopItem)
+    const savedShopItem = await newShopItem.save()
+    response.status(201).json(savedShopItem)
   }
   catch (error) {
     next(error)
@@ -51,7 +51,7 @@ shopItemRouter.get('/', async (request, response, next) => {
     const shopItems = await ShopItem.find({}).populate('category', {
       title: 1
     })
-    return response.status(201).json(shopItems)
+    return response.status(200).json(shopItems)
   }
   catch (error) {
     next(error)

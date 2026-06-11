@@ -1,9 +1,13 @@
-# React + Vite
+# shopALot — frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite single-page app for shopALot. See the [project README](../README.md) for the
+full overview, live demo, and setup instructions.
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev     # http://localhost:5173
+npm test        # Vitest + React Testing Library
+npm run build   # production build to dist/
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# shopALot
+The app reads the backend URL from `VITE_API_URL` (defaults to `http://localhost:3001`).

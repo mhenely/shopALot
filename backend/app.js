@@ -10,6 +10,7 @@ const categoryRouter = require('./controllers/categoryController')
 const shopItemRouter = require('./controllers/shopItemController')
 const userRouter = require('./controllers/userController')
 const loginRouter = require('./controllers/loginController')
+const cartRouter = require('./controllers/cartController')
 
 mongoose.set('strictQuery', false);
 
@@ -34,6 +35,7 @@ app.use('/login', loginRouter)
 app.use('/users', userRouter)
 app.use('/category', categoryRouter)
 app.use('/shopItems', shopItemRouter)
+app.use('/cart', cartRouter)
 
 
 app.use(middleware.unknownEndpoint)

@@ -88,6 +88,23 @@ const SHOP_DATA = [
       item('Reading Lamp', 'At Home', 40),
     ],
   },
+  {
+    title: 'Reading & Records',
+    items: [
+      item('Greatest Hits LP', 'Vinyl', 35),
+      item('Live Album LP', 'Vinyl', 40),
+      item('Debut Record LP', 'Vinyl', 32),
+      item('Film Score LP', 'Vinyl', 38),
+      item('Favorite Novel', 'Books', 18),
+      item('Sci-Fi Classic', 'Books', 16),
+      item('Biography Pick', 'Books', 20),
+      item('Poetry Collection', 'Books', 15),
+      item('Band Tee', 'Merch', 28),
+      item('Album Art Poster', 'Merch', 22),
+      item('Leather Bookmark', 'Merch', 10),
+      item('Canvas Book Tote', 'Merch', 24),
+    ],
+  },
 ]
 
 module.exports = SHOP_DATA

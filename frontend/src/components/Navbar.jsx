@@ -8,45 +8,11 @@ import CartIcon from "./shopping-cart/cart-icon/CartIcon";
 import CartDropdown from "./shopping-cart/cart-dropdown/CartDropdown";
 import { logout } from "../features/auth/authSlice";
 
-const categories = [
-  {
-    id: 1,
-    title: "cooking",
-    imageSrc: 'src/assets/food.jpeg',
-    route: 'categories/cooking'
-    
-  },
-  {
-    id: 2,
-    title: "national parks",
-    imageSrc: "https://cdn.outsideonline.com/wp-content/uploads/2021/04/13/arches-best-time-visit_h.jpg?width=800",
-    route: 'categories/national%20parks'
-  },
-  {
-    id: 3,
-    title: "sailing",
-    imageSrc: 'src/assets/sailing.jpeg',
-    route: 'categories/sailing'
-  },
-  {
-    id: 4,
-    title: "soccer",
-    imageSrc: 'src/assets/soccer.jpeg',
-    route: 'categories/soccer'
-  },
-  {
-    id: 5,
-    title: "traveling",
-    imageSrc: 'src/assets/travel.png',
-    route: 'categories/traveling'
-  },
-]
-
-
 const Navbar = () => {
 
   const isCartOpen = useSelector(state => state.cartDropdown.value)
   const user = useSelector(state => state.auth.user)
+  const categories = useSelector(state => state.shopData.value)
   const dispatch = useDispatch()
 
   const [ categoryDropdown, setCategoryDropdown ] = useState(false)
@@ -65,7 +31,9 @@ const Navbar = () => {
             <div className={`absolute ${categoryDropdown ? 'block' : 'hidden'} bg-slate-300 rounded shadow-md mt-1 space-y-2 z-20`}>
               <div className='p-4 flex flex-col '>
                 {
-                  categories.map(category => <Link key={category.id} to={`/${category.route}`} >{category.title}</Link>)
+                  categories.map(({ title }) => (
+                    <Link key={title} to={`/categories/${encodeURIComponent(title)}`}>{title}</Link>
+                  ))
                 }
               </div>
             </div>
@@ -94,7 +62,6 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
-    // <Navbar2 />
   )
 }
 

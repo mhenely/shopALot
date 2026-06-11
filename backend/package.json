@@ -4,6 +4,7 @@
   "description": "shop backend",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "NODE_ENV=test node --test",
     "dev": "nodemon index.js",
     "seed": "node scripts/seed.js"

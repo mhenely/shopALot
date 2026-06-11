@@ -1,0 +1,30 @@
+POST http://localhost:3003/shopItems
+Content-Type: application/json
+
+{
+  "name": "Fried Chicken",
+  "category": "66c49f04816659d66445616f",
+  "price": 20,
+  "imageUrl": [
+    "https://i.ibb.co/0cWFMCx/kfc1.jpg", 
+    "https://i.ibb.co/hVYv9fQ/kfc2.jpg", 
+    "https://i.ibb.co/qjZ3J8m/kfc3.webp"
+  ],
+  "features": {
+    "title": "Elegant Simplicty",
+    "items": [
+      {
+        "name": "Origin",
+        "description": "It is believed to have originated in the Lazio region and is synonymous with the city of Rome."
+      },
+      {
+        "name": "Description",
+        "description": "Carbonara is a creamy pasta dish made with fatty cured pork."
+      },
+      {
+        "name": "Ingredients",
+        "description": "The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper."
+      }
+    ]
+  }
+}

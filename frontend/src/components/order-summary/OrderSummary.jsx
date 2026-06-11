@@ -1,17 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { incrementItems, decrementItems, removeItem } from '../../features/cart/cartItems'
 
 import { TrashIcon } from '@heroicons/react/20/solid'
 
+const money = (n) => n.toFixed(2)
+
 const OrderSummary = ({ redirecting = false }) => {
 
   const checkoutItems = useSelector(state => state.cartItems.items)
-
-  const subTotal = Math.round(((checkoutItems.reduce((acc, curr) => acc + (curr.quantity * curr.price), 0)) * 100) / 100).toFixed(2);
-  const shipping = checkoutItems[0] ? 10.00 : 0;
-  const tax = Math.round(((subTotal ? 0.075 * (subTotal + shipping) : 0) * 100) / 100).toFixed(2);
-  const total = Math.round(((subTotal ? ( Number(tax) + Number(subTotal) + shipping) : 0) * 100) / 100).toFixed(2);
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -20,93 +17,124 @@ const OrderSummary = ({ redirecting = false }) => {
     navigate(`/categories/${category}/${name.toLowerCase()}`)
   }
 
-  // get the category for each item
+  if (!checkoutItems.length) {
+    return (
+      <div className="rounded-sm border border-clay-100 bg-white/60 p-12 text-center">
+        <p className="font-serif text-2xl">Your cart is empty</p>
+        <p className="mt-2 text-ink/60">Add something you love and it’ll show up here.</p>
+        <Link
+          to="/categories"
+          className="mt-6 inline-block bg-clay-700 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-clay-900"
+        >
+          Browse the shop
+        </Link>
+      </div>
+    )
+  }
+
+  const subtotal = checkoutItems.reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
+  const shipping = checkoutItems.length ? 10 : 0
+  const tax = (subtotal + shipping) * 0.075
+  const total = subtotal + shipping + tax
 
   return (
-    <div className="mt-10 lg:mt-0">
-            <h2 className="text-lg font-medium text-gray-900">Order summary</h2>
-
-            <div className="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm">
-              <h3 className="sr-only">Items in your cart</h3>
-              <ul role="list" className="divide-y divide-gray-200">
-                {checkoutItems.map((item) => (
-                  <li key={item.id} className="flex px-4 py-6 sm:px-6">
-                    <div className="flex-shrink-0">
-                      <img alt={item.name} src={item.imageUrl?.[0]} onClick={() => handleNavigate(item.category, item.name)} className="w-20 rounded-md cursor-pointer" />
-                    </div>
-
-                    <div className="ml-6 flex flex-1 flex-col">
-                      <div className="flex">
-                        <div className="min-w-0 flex-1">
-                          <h4 className="text-sm">
-                            <span onClick={() => handleNavigate(item.category, item.name)} className="font-medium text-gray-700 hover:text-gray-800 cursor-pointer">
-                              {item.name}
-                            </span>
-                          </h4>
-                          <p className="mt-1 text-sm text-gray-500">{item.category}</p>
-                        </div>
-
-                        <div className="ml-4 flow-root flex-shrink-0">
-                          <button
-                            onClick={() => dispatch(removeItem(item.id))}
-                            type="button"
-                            className="-m-2.5 flex items-center justify-center bg-white p-2.5 text-gray-400 hover:text-gray-500"
-                          >
-                            <span className="sr-only">Remove</span>
-                            <TrashIcon aria-hidden="true" className="h-5 w-5" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-1 items-end justify-between pt-2">
-                        <p className="mt-1 text-sm font-medium text-gray-900">${Math.round(item.price * 100 / 100).toFixed(2)}</p>
-
-                        <div className="ml-4">
-                          <label htmlFor="quantity" className="sr-only">
-                            Quantity
-                          </label>
-                          
-                          <div className="focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                            <span onClick={() => dispatch(decrementItems(item.id))} className='text-left text-xl font-medium text-gray-700 shadow-sm cursor-pointer'>&#10094;</span>
-                            <span className='text-left text-xl font-medium text-gray-700 shadow-sm'>{item.quantity}</span>
-                            <span onClick={() => dispatch(incrementItems(item))} className='text-left text-xl font-medium text-gray-700 shadow-sm cursor-pointer'>&#10095;</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <dl className="space-y-6 border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Subtotal</dt>
-                  <dd className="text-sm font-medium text-gray-900">${subTotal}</dd>
+    <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+      {/* items */}
+      <div>
+        <h2 className="border-b border-clay-100 pb-4 font-serif text-2xl font-semibold">Your order</h2>
+        <ul className="divide-y divide-clay-100">
+          {checkoutItems.map((item) => (
+            <li key={item.id} className="flex gap-5 py-6">
+              <img
+                alt={item.name}
+                src={item.imageUrl?.[0]}
+                onClick={() => handleNavigate(item.category, item.name)}
+                className="h-24 w-20 shrink-0 cursor-pointer rounded-sm object-cover"
+              />
+              <div className="flex flex-1 flex-col">
+                <div className="flex justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3
+                      onClick={() => handleNavigate(item.category, item.name)}
+                      className="cursor-pointer font-serif text-lg hover:text-clay-700"
+                    >
+                      {item.name}
+                    </h3>
+                    {item.category && (
+                      <p className="text-xs uppercase tracking-wide text-ink/40">{item.category}</p>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => dispatch(removeItem(item.id))}
+                    type="button"
+                    aria-label={`Remove ${item.name}`}
+                    className="h-fit text-ink/30 hover:text-clay-700"
+                  >
+                    <TrashIcon aria-hidden="true" className="h-5 w-5" />
+                  </button>
                 </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Shipping</dt>
-                  <dd className="text-sm font-medium text-gray-900">${shipping}</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Taxes</dt>
-                  <dd className="text-sm font-medium text-gray-900">${tax}</dd>
-                </div>
-                <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                  <dt className="text-base font-medium">Total</dt>
-                  <dd className="text-base font-medium text-gray-900">${total}</dd>
-                </div>
-              </dl>
 
-              <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <button
-                  type="submit"
-                  disabled={!checkoutItems.length || redirecting}
-                  className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 disabled:opacity-50 disabled:hover:bg-indigo-600"
-                >
-                  {redirecting ? 'Redirecting to checkout…' : 'Proceed to payment'}
-                </button>
+                <div className="mt-auto flex items-end justify-between pt-4">
+                  <div className="flex items-center rounded-sm border border-clay-100 text-sm">
+                    <button
+                      type="button"
+                      onClick={() => dispatch(decrementItems(item.id))}
+                      aria-label={`Decrease quantity of ${item.name}`}
+                      className="px-3 py-1.5 text-ink/60 hover:text-clay-700"
+                    >
+                      −
+                    </button>
+                    <span className="w-8 text-center">{item.quantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => dispatch(incrementItems(item))}
+                      aria-label={`Increase quantity of ${item.name}`}
+                      className="px-3 py-1.5 text-ink/60 hover:text-clay-700"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className="font-semibold text-clay-700">${money(item.price * item.quantity)}</p>
+                </div>
               </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* summary */}
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <div className="rounded-sm border border-clay-100 bg-white/60 p-6">
+          <h2 className="font-serif text-xl font-semibold">Summary</h2>
+          <dl className="mt-5 space-y-3 text-sm">
+            <div className="flex justify-between">
+              <dt className="text-ink/60">Subtotal</dt>
+              <dd className="font-medium">${money(subtotal)}</dd>
             </div>
-          </div>
+            <div className="flex justify-between">
+              <dt className="text-ink/60">Shipping</dt>
+              <dd className="font-medium">${money(shipping)}</dd>
+            </div>
+            <div className="flex justify-between">
+              <dt className="text-ink/60">Taxes</dt>
+              <dd className="font-medium">${money(tax)}</dd>
+            </div>
+            <div className="flex justify-between border-t border-clay-100 pt-3 text-base">
+              <dt className="font-serif font-semibold">Total</dt>
+              <dd className="font-serif text-xl font-semibold">${money(total)}</dd>
+            </div>
+          </dl>
+          <button
+            type="submit"
+            disabled={!checkoutItems.length || redirecting}
+            className="mt-6 w-full bg-clay-700 px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-clay-900 disabled:opacity-50"
+          >
+            {redirecting ? 'Redirecting to checkout…' : 'Proceed to payment'}
+          </button>
+          <p className="mt-3 text-center text-xs text-ink/40">You’ll be redirected to Stripe’s secure checkout.</p>
+        </div>
+      </div>
+    </div>
   )
 }
 

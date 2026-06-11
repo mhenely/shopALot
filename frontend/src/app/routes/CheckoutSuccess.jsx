@@ -13,21 +13,28 @@ const CheckoutSuccess = () => {
   }, [dispatch])
 
   return (
-    <div className="bg-gray-50">
-      <div className="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">Thank you for your order! 🎉</h2>
-        <p className="mt-4 text-base text-gray-500">
-          Your payment was successful (in Stripe test mode — no real charge). A confirmation
-          email is on its way.
+    <section className="px-6 py-20">
+      <div className="mx-auto max-w-lg text-center">
+        <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-clay-100 text-clay-700">
+          <svg className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m5 13 4 4L19 7" />
+          </svg>
+        </div>
+        <h1 className="mt-6 font-serif text-4xl font-semibold tracking-tight">Thank you for your order.</h1>
+        <p className="mt-4 leading-relaxed text-ink/65">
+          Your payment went through in Stripe test mode — no real charge was made. A confirmation email is on
+          its way (and yes, it includes a little hello from me).
         </p>
-        <Link
-          to="/categories"
-          className="mt-8 inline-block rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-        >
-          Continue shopping
-        </Link>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <Link
+            to="/categories"
+            className="bg-clay-700 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-cream hover:bg-clay-900"
+          >
+            Continue shopping
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

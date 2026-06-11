@@ -74,6 +74,34 @@ describe('users & auth', () => {
   })
 })
 
+describe('demo accounts', () => {
+  test('POST /auth/demo provisions a demo user and returns working credentials', async () => {
+    const res = await api.post('/auth/demo').expect(201)
+    assert.ok(res.body.token)
+    assert.ok(res.body.username)
+    assert.ok(res.body.password)
+    assert.strictEqual(res.body.passwordHash, undefined) // never leaked
+
+    const user = await User.findOne({ username: res.body.username })
+    assert.strictEqual(user.isDemo, true)
+    assert.ok(user.demoExpiresAt instanceof Date) // TTL field set
+
+    // the returned credentials work for the paste-to-return sign-in
+    const login = await api.post('/login')
+      .send({ username: res.body.username, password: res.body.password })
+      .expect(200)
+    assert.ok(login.body.token)
+  })
+
+  test('POST /auth/demo creates a distinct account each time', async () => {
+    const a = await api.post('/auth/demo').expect(201)
+    const b = await api.post('/auth/demo').expect(201)
+    assert.notStrictEqual(a.body.username, b.body.username)
+    const users = await User.find({ isDemo: true })
+    assert.strictEqual(users.length, 2)
+  })
+})
+
 describe('catalog', () => {
   test('GET /shopItems returns the seeded items', async () => {
     const res = await api.get('/shopItems').expect(200)

@@ -1,38 +1,28 @@
 import { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import OrderSummary from '../../components/order-summary/OrderSummary'
-import { removeAllItems } from '../../features/cart/cartItems'
+import { createCheckoutSession } from '../../api/checkout'
 
 export default function CheckoutPage() {
   const cartItems = useSelector((state) => state.cartItems.items)
-  const dispatch = useDispatch()
-  const [orderPlaced, setOrderPlaced] = useState(false)
+  const [redirecting, setRedirecting] = useState(false)
+  const [error, setError] = useState(null)
 
+  // Build a Stripe Checkout Session on the server, then redirect to Stripe's hosted page.
+  // The cart is cleared on the /checkout/success page once payment completes.
   const handlePlaceOrder = async (e) => {
     e.preventDefault()
     if (!cartItems.length) return
-    await dispatch(removeAllItems())
-    setOrderPlaced(true)
-  }
-
-  if (orderPlaced) {
-    return (
-      <div className="bg-gray-50">
-        <div className="mx-auto max-w-2xl px-4 py-24 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">Thank you for your order!</h2>
-          <p className="mt-4 text-base text-gray-500">
-            Your order has been placed. A confirmation would normally be emailed to you.
-          </p>
-          <Link
-            to="/categories"
-            className="mt-8 inline-block rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-          >
-            Continue shopping
-          </Link>
-        </div>
-      </div>
-    )
+    setError(null)
+    setRedirecting(true)
+    try {
+      const items = cartItems.map((i) => ({ itemId: i.id, quantity: i.quantity }))
+      const { url } = await createCheckoutSession(items)
+      window.location.href = url
+    } catch (err) {
+      setRedirecting(false)
+      setError(err.response?.data?.error || 'Could not start checkout. Please try again.')
+    }
   }
 
   return (
@@ -40,8 +30,12 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
 
+        {error && (
+          <p className="mb-6 text-center text-sm text-red-600" role="alert">{error}</p>
+        )}
+
         <form onSubmit={handlePlaceOrder} className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
-          <OrderSummary />
+          <OrderSummary redirecting={redirecting} />
         </form>
       </div>
     </div>

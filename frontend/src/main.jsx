@@ -18,6 +18,7 @@ import ErrorPage from './app/routes/ErrorPage.jsx'
 import Category from './app/routes/Category.jsx'
 import ProductPage from './app/routes/ProductPage.jsx'
 import Checkout from './app/routes/Checkout.jsx'
+import CheckoutSuccess from './app/routes/CheckoutSuccess.jsx'
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />
+      },
+      {
+        path: '/checkout/success',
+        element: <CheckoutSuccess />
       }
     ]
   }

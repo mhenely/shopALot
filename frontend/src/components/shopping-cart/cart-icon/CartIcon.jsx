@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCartOpen } from '../../../features/cart/cartDropdownSlice.js';
 
-import {CartIconContainter, ItemCount, ShopIcon} from './cart-icon.styles.jsx'
+import ShoppingCartIcon from '../../../assets/ShoppingCartIcon';
 
 
 const CartIcon = () => {
@@ -11,13 +11,16 @@ const CartIcon = () => {
 
   const dispatch = useDispatch();
 
-  // sum quantity of all carItems 
-
   return (
-    <CartIconContainter onClick={() => dispatch(toggleCartOpen())}>
-      <ShopIcon/>
-      <ItemCount>{cartCount}</ItemCount>
-    </CartIconContainter>
+    <button
+      type="button"
+      onClick={() => dispatch(toggleCartOpen())}
+      aria-label={`Cart, ${cartCount} item${cartCount === 1 ? '' : 's'}`}
+      className="w-[45px] h-[45px] relative flex items-center justify-center cursor-pointer"
+    >
+      <ShoppingCartIcon/>
+      <span className="relative text-[10px] font-bold bottom-[12px] text-black">{cartCount}</span>
+    </button>
   )
 }
 

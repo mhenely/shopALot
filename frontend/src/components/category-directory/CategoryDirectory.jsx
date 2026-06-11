@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux"
 
 import DirectoryComponent from "../directory-component/DirectoryComponent"
-import { DirectoryContainer } from "./category-directory.styles"
 import categoryImages from "../../utils/categoryImages"
 
 const CategoryDirectory = () => {
@@ -15,7 +14,7 @@ const CategoryDirectory = () => {
         <p className="mt-4 text-base text-gray-500">
           Each category represents one of my areas of interests. Browse through each to get an understanding of my favorites within each area!
         </p>
-      <DirectoryContainer>
+      <div className="w-full flex flex-wrap justify-between mt-10">
         {categories.map(({ title }) => (
           <DirectoryComponent
             key={title}
@@ -26,7 +25,7 @@ const CategoryDirectory = () => {
             }}
           />
         ))}
-      </DirectoryContainer>
+      </div>
     </div>
   </div>
   )

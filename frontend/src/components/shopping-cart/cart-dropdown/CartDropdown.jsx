@@ -3,10 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeAllItems } from '../../../features/cart/cartItems.js';
 import { toggleCartOpen } from '../../../features/cart/cartDropdownSlice.js';
 
-import { CartDropdownContainer, CartItems, EmptyMessage } from './cart-dropdown.styles.jsx'
 import CartItem from '../cart-items/CartItem.jsx'
-
-// import Button from '../button/button.component';
 
 
 const CartDropdown = () => {
@@ -24,16 +21,16 @@ const CartDropdown = () => {
 
   return (
     
-    <CartDropdownContainer>
-      <CartItems >
+    <div className="absolute w-[300px] h-[350px] flex flex-col p-5 border border-black rounded-md bg-white top-[90px] right-10 z-[5]">
+      <div className="h-[240px] flex flex-col overflow-scroll">
         {
           cartItems.length ? (cartItems.map((item) => {
             return <CartItem key={item.id} cartItem={item}/>
-          })) 
-          : <EmptyMessage>Your cart is empty</EmptyMessage>
+          }))
+          : <span className="text-lg my-[50px] mx-auto">Your cart is empty</span>
         }
-        
-      </CartItems>
+
+      </div>
       <div className='flex justify-between py-2'>
         <span>Total: ${cartTotal}</span>
         <button onClick={goToCheckoutHandler} className='w-1/2 rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700'>
@@ -50,7 +47,7 @@ const CartDropdown = () => {
           Close Cart
           </button>    
       </div>
-    </CartDropdownContainer>
+    </div>
   )
 }
 

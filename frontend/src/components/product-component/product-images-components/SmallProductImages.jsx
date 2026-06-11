@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 
-import { ProductImageContainer } from "./product-images.styles"
-
-const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
+const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc, name }) => {
 
   // tooltip comes from https://medium.com/@rkprasad.info/how-to-creating-a-cursor-anchored-tooltip-in-react-js-83593c5d17d2
 
@@ -66,7 +64,8 @@ const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
 
 
   return (
-    <ProductImageContainer
+    <div
+      className="overflow-hidden rounded-lg bg-gray-100"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -85,11 +84,11 @@ const SmallProductImages = ({ handleClick, imageIdx, swapImage, imageSrc }) => {
       </div>
     )}
     <img onClick={() => clickToSwap(imageIdx, swapImage)}
-      alt={imageSrc}
+      alt={name}
       src={imageSrc}
       className="h-full w-full object-cover object-center cursor-help"
     />
-    </ProductImageContainer>
+    </div>
   )
 
 }

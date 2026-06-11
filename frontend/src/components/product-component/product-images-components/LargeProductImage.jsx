@@ -1,14 +1,12 @@
-import { ProductImageContainer } from "./product-images.styles"
-
-const LargeProductImage = ({ imageSrc }) => {
+const LargeProductImage = ({ imageSrc, name }) => {
   return (
-    <ProductImageContainer>
-      <img 
-        alt={imageSrc}
+    <div className="overflow-hidden rounded-lg bg-gray-100">
+      <img
+        alt={name}
         src={imageSrc}
         className="h-full w-full object-cover object-center"
       />
-    </ProductImageContainer>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { incrementItems } from "../../features/cart/cartItems";
 
 import ProductImages from "../../components/product-component/ProductImages";
-import { Button } from "../../components/category-productCard/category-product-card.styles";
+import Button from "../../components/Button";
 import StatusScreen from "../../components/StatusScreen";
 
 const ProductPage = () => {
@@ -49,7 +49,7 @@ const ProductPage = () => {
             <br/>
             <Button onClick={() => dispatch(incrementItems(data))}>Add to Cart</Button>
           </div> 
-          <ProductImages imageSrc={data.imageUrl} />
+          <ProductImages imageSrc={data.imageUrl} name={data.name} />
         </div>
       </div>
     </div>

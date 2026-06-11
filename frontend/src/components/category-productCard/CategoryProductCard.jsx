@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { incrementItems } from "../../features/cart/cartItems";
 
-import { ProductCardContainer, Footer, Name, Price, Button } from "./category-product-card.styles";
+import Button from "../Button";
 
 
 const CategoryProductCard = ({ product, category }) => {
@@ -25,19 +25,24 @@ const CategoryProductCard = ({ product, category }) => {
   
 
   return (
-    <ProductCardContainer>
-      <img 
+    <div className="w-full flex flex-col h-[350px] items-center relative group">
+      <img
         onClick={onNavigateHandler}
-        src={imageUrl[0]} 
-        alt={`${name}`}
-        className="h-full w-full object-cover object-center group-hover:opacity-75 cursor-pointer rounded"
+        src={imageUrl[0]}
+        alt={name}
+        className="w-full h-[95%] object-cover object-center mb-[5px] rounded cursor-pointer group-hover:opacity-80"
       />
-      <Footer>
-        <Name>{name}</Name>
-        <Price>${price}</Price>
-      </Footer>
-      <Button onClick={addCartItem}>add to cart</Button>
-    </ProductCardContainer>
+      <div className="w-full h-[5%] flex justify-between text-lg">
+        <span className="mt-1 text-sm leading-5 text-gray-700">{name}</span>
+        <span className="mt-1 text-lg leading-7 font-medium text-gray-900">${price}</span>
+      </div>
+      <Button
+        onClick={addCartItem}
+        className="w-4/5 absolute top-[255px] opacity-70 hidden group-hover:flex group-hover:opacity-90"
+      >
+        add to cart
+      </Button>
+    </div>
   )
 }
 

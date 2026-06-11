@@ -1,2 +1,4 @@
 /node_modules
 .env
+# local-only: resume is delivered via a hosted link (RESUME_URL), not committed
+assets/

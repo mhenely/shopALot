@@ -30,6 +30,14 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Checkout</h2>
 
+        <div className="mb-8 rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <p className="font-semibold">Demo store — Stripe test mode</p>
+          <p className="mt-1">
+            This is a portfolio project, so no real payment is taken. On the next page, use test card
+            4242 4242 4242 4242, any future expiry date, and any 3-digit CVC.
+          </p>
+        </div>
+
         {error && (
           <p className="mb-6 text-center text-sm text-red-600" role="alert">{error}</p>
         )}

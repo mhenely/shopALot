@@ -10,7 +10,8 @@ const getResend = () => {
 }
 
 // Sender must be on a domain verified in Resend (e.g. matthenely.com).
-const FROM = process.env.FROM_EMAIL || 'shopALot <onboarding@resend.dev>'
+// Read lazily (at send time, not import time) so it's correct regardless of when dotenv loads.
+const getFrom = () => process.env.FROM_EMAIL || 'shopALot <onboarding@resend.dev>'
 
 // Optional resume PDF. If present it's attached; if not, the email still sends.
 const RESUME_PATH = path.join(__dirname, '..', 'assets', 'resume.pdf')
@@ -65,7 +66,7 @@ const sendOrderConfirmation = async ({ to, items, total }) => {
   // Resend returns errors as a value (it doesn't throw), so surface them as a throw
   // — otherwise a rejected send (e.g. unverified domain) would look like a success.
   const { data, error } = await getResend().emails.send({
-    from: FROM,
+    from: getFrom(),
     to,
     subject: 'Your shopALot order confirmation',
     html: orderHtml(items, total),

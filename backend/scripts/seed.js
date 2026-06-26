@@ -15,6 +15,7 @@ const categoryImages = {
   food: '',
   travel: '',
   hobbies: '',
+  'books & music': '',
 }
 
 const seed = async () => {

@@ -292,6 +292,73 @@ const SHOP_DATA = [
       ]),
     ],
   },
+  {
+    title: 'Books & Music',
+    items: [
+      // --- Books (facets: author / the story / why it endures) ---
+      item('The Count of Monte Cristo', 'Books', 18.44, 'Revenge, served patiently.', [
+        ['Alexandre Dumas', 'The French master of adventure, who serialized the novel in 1844.'],
+        ['The story', 'Wrongly imprisoned, Edmond Dantès escapes, claims a hidden fortune, and engineers an elaborate revenge.'],
+        ['Why it endures', 'A 1,200-page page-turner about patience, justice, and the cost of vengeance.'],
+      ]),
+      item('A Place of Greater Safety', 'Books', 19.92, 'The Revolution, up close.', [
+        ['Hilary Mantel', "The two-time Booker winner's sweeping novel of the French Revolution."],
+        ['The story', 'Danton, Robespierre, and Desmoulins ride the Revolution from idealism to the guillotine.'],
+        ['Why it endures', 'History made intimate — friendship and ambition curdling into terror.'],
+      ]),
+      item('The Realm of the Elderlings', 'Books', 19.95, 'Fantasy that breaks your heart.', [
+        ['Robin Hobb', 'The pen name of Margaret Ogden, a master of character-driven fantasy.'],
+        ['The story', 'Sixteen books following FitzChivalry Farseer — a royal bastard and reluctant assassin — and his bond with the Fool.'],
+        ['Why it endures', 'Slow-burning and emotionally devastating; it rewards the long haul.'],
+      ]),
+      item('Lord of the Rings', 'Books', 19.54, 'Where modern fantasy begins.', [
+        ['J.R.R. Tolkien', 'The Oxford philologist who invented modern fantasy, languages and all.'],
+        ['The story', 'A hobbit carries a ruinous ring across Middle-earth to unmake it in the fire that forged it.'],
+        ['Why it endures', 'The template every fantasy since has been measured against.'],
+      ]),
+      item('To Kill A Mockingbird', 'Books', 19.6, 'Conscience in a small town.', [
+        ['Harper Lee', 'Her Pulitzer-winning 1960 novel, drawn from a Depression-era Alabama childhood.'],
+        ['The story', 'Scout Finch watches her father defend a Black man falsely accused in the Jim Crow South.'],
+        ['Why it endures', 'A clear-eyed look at conscience, prejudice, and growing up.'],
+      ]),
+      item('East of Eden', 'Books', 19.52, 'Thou mayest.', [
+        ['John Steinbeck', 'The Nobel laureate considered this his magnum opus.'],
+        ['The story', "Two families in California's Salinas Valley reenact Cain and Abel across generations."],
+        ['Why it endures', "A meditation on free will captured in one word: timshel — 'thou mayest.'"],
+      ]),
+      item('Moby-Dick', 'Books', 18.51, 'Call me Ishmael.', [
+        ['Herman Melville', 'His 1851 novel, a flop in its day, later hailed as the Great American Novel.'],
+        ['The story', "Captain Ahab hunts the white whale that took his leg, dragging his crew toward obsession's end."],
+        ['Why it endures', 'Part sea yarn, part encyclopedia, part fever dream.'],
+      ]),
+      item('One Hundred Years of Solitude', 'Books', 19.67, 'Where the miraculous is ordinary.', [
+        ['Gabriel García Márquez', 'The Nobel laureate and standard-bearer of magical realism.'],
+        ['The story', 'Seven generations of the Buendía family rise and fall in the mythical town of Macondo.'],
+        ['Why it endures', 'The book where the magical and the everyday share a sentence.'],
+      ]),
+      item('The Old Man and the Sea', 'Books', 19.52, 'Destroyed, not defeated.', [
+        ['Ernest Hemingway', 'His spare 1952 novella that helped win him the Nobel.'],
+        ['The story', 'An aging Cuban fisherman battles a giant marlin alone, far out in the Gulf Stream.'],
+        ['Why it endures', 'A short, stoic parable about struggle and dignity.'],
+      ]),
+      // --- Music (facets: three bands per genre) ---
+      item('Celtic Punk', 'Music', 19.82, 'Whiskey, fiddles, and distortion.', [
+        ['Flogging Molly', 'L.A.-via-Dublin band fronted by Dave King, mixing punk with tin whistle and fiddle.'],
+        ['Dropkick Murphys', "Boston's bagpipe-punk institution behind 'I'm Shipping Up to Boston.'"],
+        ['The Pogues', "The originals — Shane MacGowan's ragged poetry over Irish folk turned loud and fast."],
+      ]),
+      item('Classic Rock', 'Music', 19.69, 'Turn it up.', [
+        ['Led Zeppelin', "Riff-heavy giants of the '70s — Page's guitar, Plant's wail, and 'Stairway.'"],
+        ['The Beatles', 'The band that rewrote popular music in barely eight years.'],
+        ['AC/DC', "Australia's high-voltage hard rock, built on Angus Young's schoolboy stomp."],
+      ]),
+      item('Island Music', 'Music', 19.77, 'Sand between your toes.', [
+        ['IZ', "Israel Kamakawiwoʻole, whose ukulele 'Over the Rainbow' is pure aloha."],
+        ['Bob Marley & The Wailers', 'The voice that carried reggae from Kingston to the world.'],
+        ['Hapa', 'Hawaiian group blending slack-key guitar and contemporary harmonies.'],
+      ]),
+    ],
+  },
 ]
 
 module.exports = SHOP_DATA

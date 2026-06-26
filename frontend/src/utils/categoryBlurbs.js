@@ -2,14 +2,14 @@
 // Keyed by category title (lowercase, matching the API). Edit these freely —
 // any category without an entry falls back to the generic line below.
 const categoryBlurbs = {
-  'national parks': 'Trails, granite, and the quiet at altitude. Prints and gear from the places worth the climb.',
-  traveling: 'Stamps in the passport and the long way home. Pieces for people who pack light and go far.',
-  cooking: 'Slow Sundays and a well-seasoned pan. The good knives, boards, and odds-and-ends I actually use.',
-  sailing: 'Wind, tiller, and a forecast worth trusting. For the days the water does the talking.',
-  soccer: 'Saturday match days and a worn-in pair of boots. Kit for the beautiful game.',
+  sports: 'The sports, teams, and players I’d never switch — kit, colors, and loyalties.',
+  food: 'The dishes I crave, the spots I miss, and a lifelong carbonara habit.',
+  travel: 'Places I’ve been and places I’m dreaming of — passport always ready.',
+  hobbies: 'On the pitch, on the water, on the page — a little of everything I love.',
+  'books & music': 'What’s on the nightstand and the turntable — the books and records I keep coming back to.',
 }
 
-const FALLBACK = 'A handful of pieces from one of my favorite things.'
+const FALLBACK = 'A handful of things from one of my favorite things.'
 
 export const getBlurb = (title) => categoryBlurbs[title?.toLowerCase()] || FALLBACK
 

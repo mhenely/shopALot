@@ -1,34 +1,5 @@
 const mongoose = require('mongoose')
 
-// {
-//   id: 48,
-//   category: 'cooking',
-//   name: 'Fried Chicken',
-//   imageUrl: [
-//     'https://i.ibb.co/0cWFMCx/kfc1.jpg', 
-//     'https://i.ibb.co/hVYv9fQ/kfc2.jpg', 
-//     'https://i.ibb.co/qjZ3J8m/kfc3.webp'
-//   ],        
-//   price: 20,
-//   features: {
-//     title: 'Elegant Simplicity',
-//     items: [
-//       {
-//         name: 'Origin',
-//         description:
-//           'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-//       },
-//       { name: 'Description', 
-//         description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-//       {
-//         name: 'Ingredients',
-//         description:
-//           'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-//       },
-//     ]
-//   }
-// },
-
 const shopItemSchema = new mongoose.Schema({
   name: String,
   category: {

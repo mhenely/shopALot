@@ -1,1371 +1,364 @@
+// Seed data for the shop.
+//
+// Structure: each category groups items; each item carries a `subcategory`
+// (the in-page filter chips — Hobbies has none) and three "facets". Each facet
+// becomes one labeled detail row AND one gallery image on the product page.
+//
+// PLACEHOLDERS: imageUrl points at labeled placehold.co boxes ("Item · Facet")
+// so you know which photo goes where — swap in real images. Descriptions are
+// written; prices are playful nods (shirt numbers, founding years, landmark
+// dates) — tweak freely.
+
+const PLACE = (label) =>
+  `https://placehold.co/600x720/f1e4d6/97431a?text=${encodeURIComponent(label)}`
+
+// facets: [ [label, description], ... ] (three each). One detail + one image apiece.
+const item = (name, subcategory, price, tagline, facets) => ({
+  name,
+  subcategory,
+  price,
+  imageUrl: facets.map(([label]) => PLACE(`${name} · ${label}`)),
+  features: {
+    title: tagline,
+    items: facets.map(([label, description]) => ({ name: label, description })),
+  },
+})
+
 const SHOP_DATA = [
   {
-    title: 'National Parks',
+    title: 'Sports',
     items: [
-      {
-        category: 'national parks',
-        name: 'Yellowstone',
-        imageUrl: [
-          'https://i.ibb.co/xsh7HSr/yellowstone1.jpg',
-          'https://i.ibb.co/J5hDZN7/yellowstone2.jpg', 
-          'https://i.ibb.co/JtjjwFC/yellowstone3.jpg'
-        ],
-        price: 250,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        category: 'national parks',
-        name: 'Grand Canyon',
-        imageUrl: [
-          'https://i.ibb.co/QXKz0b1/grand-canyon1.jpg',
-          'https://i.ibb.co/G75GRBz/grand-canyon2.jpg', 
-          'https://i.ibb.co/Q8QkZgp/grand-canyon3.jpg'
-        ],
-        price: 150,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 3,
-        category: 'national parks',
-        name: 'Biscayne',
-        imageUrl: [
-          'https://i.ibb.co/nrbtgDs/biscayne1.webp',
-          'https://i.ibb.co/T0Tnbvf/biscayne2.jpg', 
-          'https://i.ibb.co/pyJg5BM/biscayne3.jpg'
-        ],
-        price: 235,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 4,
-        category: 'national parks',
-        name: 'Crater Lake',
-        imageUrl: [
-          'https://i.ibb.co/5hJMzjg/craterlake1.webp',
-          'https://i.ibb.co/2WZ19g6/craterlake2.webp', 
-          'https://i.ibb.co/8zfS5Jf/craterlake3.jpg'
-        ],
-        price: 220,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 5,
-        category: 'national parks',
-        name: 'Cuyahoga',
-        imageUrl: [
-          'https://i.ibb.co/9qhRPvk/cuyahoga1.webp',
-          'https://i.ibb.co/4FdxQRM/cuyahoga2.webp', 
-          'https://i.ibb.co/8zCw0hS/cuyahoga3.jpg'
-        ],
-        price: 220,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 6,
-        category: 'national parks',
-        name: 'Death Valley',
-        imageUrl: [
-          'https://i.ibb.co/9g6DD9J/death-Valley1.webp',
-          'https://i.ibb.co/yfPxjpy/deathvalley2.webp', 
-          'https://i.ibb.co/BTZWVVG/deathvalley3.webp'
-        ],
-        price: 140,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 7,
-        category: 'national parks',
-        name: 'Denali',
-        imageUrl: [
-          'https://i.ibb.co/KjpqX4b/deanli1.webp',
-          'https://i.ibb.co/1qJtDTX/deanli3.jpg', 
-          'https://i.ibb.co/qBJGSHt/denali2.jpg'
-        ],
-        price: 350,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 8,
-        category: 'national parks',
-        name: 'Dry Tortuga',
-        imageUrl: [
-          'https://i.ibb.co/L0DtLy6/dry2.jpg',
-          'https://i.ibb.co/x26mRP0/dry3.jpg', 
-          'https://i.ibb.co/mhcXvnM/dryt1.jpg'
-        ],
-        price: 320,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 9,
-        category: 'national parks',
-        name: 'Acadia',
-        imageUrl: [
-          'https://i.ibb.co/ScxbR4r/acadia1.jpg',
-          'https://i.ibb.co/pxZXn5s/acadia2.jpg', 
-          'https://i.ibb.co/sK7bKTg/acadia3.webp'
-        ],
-        price: 175,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 10,
-        category: 'national parks',
-        name: 'Redwood',
-        imageUrl: [
-          'https://i.ibb.co/xDJGHrw/redwood1.jpg',
-          'https://i.ibb.co/phKVVLN/redwood2.jpg', 
-          'https://i.ibb.co/5kqWDLF/redwood3.jpg'
-        ],
-        price: 155,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 11,
-        category: 'national parks',
-        name: 'Rocky Mountain',
-        imageUrl: [
-          'https://i.ibb.co/hF1PXj0/rocky1.jpg',
-          'https://i.ibb.co/rbwVX6L/rocky2.webp', 
-          'https://i.ibb.co/KbDx2mt/rocky3.jpg'
-        ],
-        price: 190,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 12,
-        category: 'national parks',
-        name: 'Saguaro',
-        imageUrl: [
-          'https://i.ibb.co/MphptZ8/saguaro1.jpg',
-          'https://i.ibb.co/2SfVnJ8/saguaro2.jpg', 
-          'https://i.ibb.co/GkG5L40/saguaro3.jpg'
-        ],
-        price: 165,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
+      // --- Favorite Sports ---
+      item('Soccer', 'Favorite Sports', 11.0, "The world's game.", [
+        ['The game', 'Twenty-two players, one ball, ninety minutes — the simplest game there is and the hardest to master.'],
+        ['The flow', 'No timeouts and barely a whistle; the run of play just breathes, building tension until it breaks.'],
+        ['The stage', 'Every four years the World Cup turns the entire planet into a single stadium.'],
+      ]),
+      item('Hockey', 'Favorite Sports', 6.0, 'Chess at thirty miles an hour.', [
+        ['The game', 'Five skaters and a goalie chasing a frozen rubber puck across the ice at a full sprint.'],
+        ['The speed', 'The fastest team sport going — line changes on the fly, hits along the boards, shots you can barely track.'],
+        ['The stage', 'Lift the Stanley Cup and your name is engraved on it forever.'],
+      ]),
+      item('Aussie Rules Football', 'Favorite Sports', 18.0, 'Controlled chaos on an oval.', [
+        ['The game', 'Eighteen a side on a huge oval, leaping for marks and kicking through the big sticks for six.'],
+        ['The chaos', "No offside and near-constant motion, with spectacular high-flying 'speccies' over packs of players."],
+        ['The stage', 'The AFL Grand Final at the MCG is one of the great days on the Australian calendar.'],
+      ]),
+      // --- Favorite Teams ---
+      item('Liverpool', 'Favorite Teams', 18.92, "You'll Never Walk Alone.", [
+        ['The club', "One of England's most storied sides, founded in 1892 and built on relentless, high-pressing football."],
+        ['Anfield', 'The Kop in full voice on a European night is one of the great atmospheres in sport.'],
+        ['The anthem', "Scarves up for 'You'll Never Walk Alone' — the hair-on-your-neck moment before kickoff."],
+      ]),
+      item('Barcelona', 'Favorite Teams', 18.99, 'Més que un club.', [
+        ['The club', "Catalan giants founded in 1899, famous for tiki-taka and a golden generation out of La Masia."],
+        ['Camp Nou', 'Nearly 100,000 seats — the largest football stadium in Europe.'],
+        ['The motto', "'Més que un club' — more than a club — ties the team to Catalan identity itself."],
+      ]),
+      item('Valencia', 'Favorite Teams', 19.19, 'Amunt Valencia.', [
+        ['The club', "Spain's perennial third force, founded in 1919 on the Mediterranean coast."],
+        ['Mestalla', 'One of the steepest, most intimidating grounds in Spain.'],
+        ['Los Che', 'White shirts, orange trim, and a famously demanding home crowd.'],
+      ]),
+      item('Blues', 'Favorite Teams', 19.67, 'Play Gloria.', [
+        ['The club', 'The St. Louis Blues, who joined the NHL in 1967 in its first big expansion.'],
+        ['The barn', "A loud downtown rink where 'Gloria' became the soundtrack of a championship run."],
+        ['2019', 'After 52 years, the Blues finally lifted the Stanley Cup.'],
+      ]),
+      item('Cubs', 'Favorite Teams', 18.76, 'Fly the W.', [
+        ['The club', "The Chicago Cubs, one of baseball's oldest franchises, dating to 1876."],
+        ['Wrigley Field', 'Ivy-covered brick outfield walls and a hand-turned scoreboard since 1914.'],
+        ['2016', 'Broke a 108-year title drought with one of the great Game 7s ever played.'],
+      ]),
+      // --- Favorite Players ---
+      item('Gerrard', 'Favorite Players', 8.0, 'Captain, leader, legend.', [
+        ['The player', "Steven Gerrard, Liverpool's box-to-box captain and one-club icon."],
+        ['The strike', 'Thunderbolt shots from distance that seemed to bend the laws of physics.'],
+        ['Istanbul 2005', 'Sparked the comeback from 3–0 down to win the Champions League final.'],
+      ]),
+      item('Messi', 'Favorite Players', 10.0, 'The debate, settled.', [
+        ['The player', "Lionel Messi, the Argentine maestro and serial Ballon d'Or winner."],
+        ['The left foot', 'A low center of gravity and impossible close control that leave defenders grasping.'],
+        ['2022', 'Finally lifted the World Cup, completing the one trophy he was missing.'],
+      ]),
+      item('Sidney Crosby', 'Favorite Players', 87.0, 'Sid the Kid.', [
+        ['The player', 'Pittsburgh Penguins captain and the face of his hockey generation.'],
+        ['The vision', 'Elite hockey IQ and playmaking from below the goal line.'],
+        ['The Golden Goal', 'Won Olympic gold for Canada in overtime on home ice in 2010.'],
+      ]),
+      item('Firmino', 'Favorite Players', 9.0, 'The smiling false nine.', [
+        ['The player', "Roberto Firmino, the Brazilian who made Liverpool's front three tick."],
+        ['The press', "Did the selfless defensive work that powered Klopp's gegenpressing."],
+        ['No-look goals', 'Famous for cheeky no-look finishes and a permanent grin.'],
+      ]),
     ],
   },
   {
-    title: 'Sailing',
+    title: 'Food',
     items: [
-      {
-        id: 13,
-        category: 'sailing',
-        name: 'Greece',
-        imageUrl: [
-          'https://i.ibb.co/Jmc3jTx/greece3.jpg',
-          'https://i.ibb.co/R2BxDz3/greece2.webp', 
-          'https://i.ibb.co/CWPfKBT/greece2.jpg'
-        ],
-        price: 250,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 14,
-        category: 'sailing',
-        name: 'British Virgin Islands',
-        imageUrl: [
-          'https://i.ibb.co/BzmJw8Q/bvi1.jpg',
-          'https://i.ibb.co/7RHvHvw/bvi2.webp', 
-          'https://i.ibb.co/QcdRV9P/bvi3.jpg'
-        ],
-        price: 490,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 15,
-        category: 'sailing',
-        name: 'Hawaii',
-        imageUrl: [
-          'https://i.ibb.co/2FQ1RbS/hawai1.png',
-          'https://i.ibb.co/s6THxzL/hawaii2.jpg', 
-          'https://i.ibb.co/wBy46dL/hawaii3.jpg'
-        ],
-        price: 510,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 16,
-        category: 'sailing',
-        name: 'Philippines',
-        imageUrl: [
-          'https://i.ibb.co/6ybtfnC/phil1.jpg',
-          'https://i.ibb.co/M19VCtr/phili2.webp', 
-          'https://i.ibb.co/YR5LM37/phili3.jpg'
-        ],
-        price: 300,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 17,
-        category: 'sailing',
-        name: 'Australia',
-        imageUrl: [
-          'https://i.ibb.co/kQDkSxZ/aus1.jpg',
-          'https://i.ibb.co/JcNs3cR/aus2.jpg', 
-          'https://i.ibb.co/dcWCrf8/aus3.webp'
-        ],
-        price: 560,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 18,
-        category: 'sailing',
-        name: 'France',
-        imageUrl: [
-          'https://i.ibb.co/LdggGjs/france1.jpg',
-          'https://i.ibb.co/zJWWGx1/france2.jpg', 
-          'https://i.ibb.co/kmR0b4c/france3.webp'
-        ],
-        price: 510,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 19,
-        category: 'sailing',
-        name: 'South Africa',
-        imageUrl: [
-          'https://i.ibb.co/syBnqH2/south1.jpg',
-          'https://i.ibb.co/42LWS8R/south2.jpg', 
-          'https://i.ibb.co/wSbRw4D/south3.jpg'
-        ],
-        price: 480,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 20,
-        category: 'sailing',
-        name: 'Brazil',
-        imageUrl: [
-          'https://i.ibb.co/HYXvDwG/brazil1.jpg',
-          'https://i.ibb.co/w7tGFmr/brazil2.jpg', 
-          'https://i.ibb.co/PF07wZt/brazil3.jpg'
-        ],
-        price: 390,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
+      // --- Favorite Foods ---
+      item('Italian', 'Favorite Foods', 18.61, 'Rome on a plate.', [
+        ['Carbonara', 'Egg yolk, pecorino, black pepper, and crisp guanciale tossed with hot pasta — glossy and rich, never creamy.'],
+        ['Amatriciana', 'Guanciale, tomato, and pecorino on bucatini — the tangier, sharper cousin of carbonara, from the town of Amatrice.'],
+        ['Pizza', 'Blistered Neapolitan dough with San Marzano and mozzarella, ninety seconds in a screaming wood oven.'],
+      ]),
+      item('Sushi', 'Favorite Foods', 22.0, 'Precision you can taste.', [
+        ['Nigiri', 'A hand-pressed pillow of seasoned rice under a slice of pristine fish.'],
+        ['Sashimi', "Just the fish, sliced with knife-work that's an art form of its own."],
+        ['The rice', 'Shari — vinegared rice at body temperature — is the part the masters obsess over.'],
+      ]),
+      item('Burger', 'Favorite Foods', 12.0, 'America in a bun.', [
+        ['The smash', 'A ball of beef smashed thin on a screaming flat-top for lacy, crispy edges.'],
+        ['The melt', "American cheese laid on while it's hot so it pools into every crevice."],
+        ['The fixings', 'Pickles, onion, and a tangy special sauce on a soft potato bun.'],
+      ]),
+      item('BBQ', 'Favorite Foods', 24.0, 'Low and slow.', [
+        ['Brisket', 'Beef brisket smoked twelve-plus hours to a peppery bark and a pink smoke ring.'],
+        ['Ribs', 'Pork ribs with just enough tug off the bone — falling apart means overcooked.'],
+        ['Burnt ends', "The caramelized, twice-cooked tips of the brisket point — 'meat candy.'"],
+      ]),
+      item('Thai', 'Favorite Foods', 15.0, 'Sweet, sour, salty, hot.', [
+        ['Pad Thai', 'Stir-fried rice noodles with tamarind, egg, peanuts, and lime — the balance is everything.'],
+        ['Pad Krapao', "Holy-basil stir-fry with chilies over rice, crowned with a crispy fried egg — Thailand's true comfort food."],
+        ['Green Curry', 'Coconut curry pounded from fresh green chilies and herbs, fragrant and fiery.'],
+      ]),
+      item('Hawaiian', 'Favorite Foods', 16.0, 'The island plate.', [
+        ['Plate lunch w/ Kalua pork', 'Smoky, salt-rubbed pork cooked low and slow, with two scoops rice and mac salad.'],
+        ['Poke bowl', 'Cubes of raw ahi tossed with shoyu, sesame, and sweet onion over rice.'],
+        ['Spam Musubi', "Grilled Spam over rice, wrapped in nori — the islands' favorite snack."],
+      ]),
+      item('Mexican', 'Favorite Foods', 14.0, 'Beyond the taco truck.', [
+        ['Mole Poblano', 'A deep, complex sauce of chilies, spices, and a little chocolate, simmered for hours.'],
+        ['Chiles Rellenos', 'Roasted poblano stuffed with cheese, battered, and fried until golden.'],
+        ['Tacos al Pastor', 'Spit-roasted marinated pork with pineapple, onion, and cilantro on a corn tortilla.'],
+      ]),
+      // --- Favorite Restaurants ---
+      item('LeChon', 'Favorite Restaurants', 20.14, 'Pan-Latin, Portland.', [
+        ['Portland, OR', 'A waterfront spot in downtown Portland.'],
+        ['The kitchen', 'Pan-Latin cooking — ceviche, empanadas, plantains, and slow-roasted meats.'],
+        ['Order this', 'The namesake lechón: crispy-skinned roast pork.'],
+      ]),
+      item('EEM', 'Favorite Restaurants', 20.19, 'Thai BBQ mashup.', [
+        ['Portland, OR', 'On the north side of Portland.'],
+        ['The kitchen', 'Thai food meets Texas barbecue — curries built around smoked brisket and burnt ends.'],
+        ['Order this', "The brisket curry, a combination you won't find anywhere else."],
+      ]),
+      item("Pappy's", 'Favorite Restaurants', 20.08, 'Memphis-style smoke.', [
+        ['St. Louis, MO', 'A barbecue institution in midtown St. Louis.'],
+        ['The kitchen', 'Memphis-style barbecue smoked over apple and cherry wood.'],
+        ['Order this', 'Dry-rub ribs — when they sell out for the day, they close.'],
+      ]),
+      item('Cave of Cheese', 'Favorite Restaurants', 18.6, 'Fromage on the Riviera.', [
+        ['Nice, France', 'In the old town of Nice on the French Riviera.'],
+        ['The kitchen', 'A cheese cellar stacked with French fromage and good wine.'],
+        ['Order this', 'A board of regional cheeses with a glass of something local.'],
+      ]),
+      item("Imo's", 'Favorite Restaurants', 19.64, 'The Square Beyond Compare.', [
+        ['St. Louis, MO', 'A St. Louis original, founded in 1964.'],
+        ['The kitchen', 'St. Louis-style pizza: cracker-thin crust and gooey Provel, cut into squares.'],
+        ['Order this', 'Sausage, extra Provel — and yes, you eat the corners.'],
+      ]),
     ],
   },
   {
-    title: 'Soccer',
+    title: 'Travel',
     items: [
-      {
-        id: 21,
-        category: 'soccer',
-        name: 'Liverpool at Anfield',
-        imageUrl: [
-          'https://i.ibb.co/98sC88N/anfield1.jpg',
-          'https://i.ibb.co/y0xw92s/anfield2.jpg', 
-          'https://i.ibb.co/8xh2ksq/anfield3.jpg'
-        ],
-        price: 125,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 22,
-        category: 'soccer',
-        name: 'Barcelona at Camp Nou',
-        imageUrl: [
-          'https://i.ibb.co/4jnHP8V/barca1.webp',
-          'https://i.ibb.co/MR1yhWD/barca2.jpg', 
-          'https://i.ibb.co/K9PQzF4/barca3.webp'
-        ],
-        price: 130,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 23,
-        category: 'soccer',
-        name: 'Dortmund at Wastfalenstadion',
-        imageUrl: [
-          'https://i.ibb.co/ySvGYSN/dort1.jpg',
-          'https://i.ibb.co/zJRYbCc/dort2.jpg', 
-          'https://i.ibb.co/djvwH8t/dort3.jpg'
-        ],
-        price: 90,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 24,
-        category: 'soccer',
-        name: 'Brazil at Maracanã',
-        imageUrl: [
-          'https://i.ibb.co/dpbNQT0/mara1.jpg',
-          'https://i.ibb.co/M8mZ3nd/mara2.webp', 
-          'https://i.ibb.co/94JgwVK/mara3.webp'
-        ],
-        price: 165,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 25,
-        category: 'soccer',
-        name: 'Real Madrid at Santiago Bernabéu',
-        imageUrl: [
-          'https://i.ibb.co/qrGmxQF/madrid1.jpg',
-          'https://i.ibb.co/J7xRb52/madrid2.jpg', 
-          'https://i.ibb.co/GRbpnvF/madrid3.jpg'
-        ],
-        price: 185,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 26,
-        category: 'soccer',
-        name: 'England at Wembley',
-        imageUrl: [
-          'https://i.ibb.co/fMYBHby/wemb1.png',
-          'https://i.ibb.co/Pgg39YS/wemb2.jpg', 
-          'https://i.ibb.co/j8jRBGw/wemb3.jpg'
-        ],
-        price: 235,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 27,
-        category: 'soccer',
-        name: 'Mexico at La Azteca',
-        imageUrl: [
-          'https://i.ibb.co/SDTwtnt/azteca1.jpg',
-          'https://i.ibb.co/gJzKpg6/azteca2.png', 
-          'https://i.ibb.co/b6zVW4B/azteca3.jpg'
-        ],
-        price: 100,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 28,
-        category: 'soccer',
-        name: 'Bayern Munich at Allianz',
-        imageUrl: [
-          'https://i.ibb.co/XZ2mZC3/bayern1.jpg',
-          'https://i.ibb.co/1T98JZk/bayern2.webp', 
-          'https://i.ibb.co/F7yrwrg/bayern3.jpg'
-        ],
-        price: 125,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
+      // --- Favorite Destinations ---
+      item('Paris', 'Favorite Destinations', 18.89, 'The City of Light.', [
+        ['The setting', 'The Seine, grand boulevards, and zinc rooftops to the horizon.'],
+        ['The icon', 'The Eiffel Tower, lit and sparkling on the hour after dark.'],
+        ['The table', "Café culture, fresh baguettes, and butter you'll think about for years."],
+      ]),
+      item('Rome', 'Favorite Destinations', 7.53, 'The Eternal City.', [
+        ['The setting', 'Layers of nearly 2,800 years of history stacked street on street.'],
+        ['The icon', 'The Colosseum and the Pantheon, still standing after two millennia.'],
+        ['The table', 'Cacio e pepe, carbonara, and gelato eaten among the ruins.'],
+      ]),
+      item('Machu Picchu', 'Favorite Destinations', 14.5, 'The lost city of the Inca.', [
+        ['The setting', 'An Inca citadel perched on a ridge 8,000 feet up in the Andes.'],
+        ['The journey', 'Reached by the Inca Trail or a switchback climb above the Urubamba River.'],
+        ['The view', 'Terraces and dry-stone walls swallowed by cloud at sunrise.'],
+      ]),
+      item('Sydney', 'Favorite Destinations', 19.73, 'Harbour city.', [
+        ['The setting', "A sun-drenched city wrapped around one of the world's great harbors."],
+        ['The icon', 'The Opera House sails beside the Harbour Bridge.'],
+        ['The coast', 'Clifftop walks from Bondi to Coogee and beaches without end.'],
+      ]),
+      item('Hawaii', 'Favorite Destinations', 19.59, 'Aloha.', [
+        ['The setting', 'Volcanic islands in the middle of the Pacific, green to the waterline.'],
+        ['The water', 'Warm surf, coral reefs, and some of the best snorkeling anywhere.'],
+        ['The spirit', 'The aloha way of life — unhurried, generous, welcoming.'],
+      ]),
+      item('BVI', 'Favorite Destinations', 16.72, "Nature's little secrets.", [
+        ['The setting', 'The British Virgin Islands — dozens of green isles in clear Caribbean water.'],
+        ['On the water', 'A world-class sailing ground with easy line-of-sight hops between islands.'],
+        ['The stops', "The Baths' giant boulders and beach bars you can only reach by boat."],
+      ]),
+      item('Barcelona', 'Favorite Destinations', 19.92, "Gaudí's city.", [
+        ['The setting', 'A Catalan capital where the streets run down to the Mediterranean.'],
+        ['The icon', "Gaudí's Sagrada Família and the mosaic dragons of Park Güell."],
+        ['The table', 'Tapas, vermut, and dinners that roll well past midnight.'],
+      ]),
+      // --- Goal Destinations ---
+      item('Tokyo', 'Goal Destinations', 19.58, 'Neon and quiet, side by side.', [
+        ['The setting', "A 24-hour megacity that's somehow also spotless and calm."],
+        ['The food', 'From convenience-store snacks to the densest cluster of great restaurants on earth.'],
+        ['The contrast', 'Shrines and gardens tucked between skyscrapers and neon.'],
+      ]),
+      item('London', 'Goal Destinations', 18.63, 'Mind the gap.', [
+        ['The setting', 'A global city stitched together along the Thames.'],
+        ['The icons', 'Big Ben, the Tube, red double-deckers, and centuries of history.'],
+        ['The mix', 'Markets, free museums, and a pub on every corner.'],
+      ]),
+      item('Ireland', 'Goal Destinations', 19.22, 'Forty shades of green.', [
+        ['The setting', 'Emerald hills, sea cliffs, and stone walls running to the coast.'],
+        ['The drive', 'The Wild Atlantic Way and the Cliffs of Moher.'],
+        ['The craic', 'Trad music and good company in warm village pubs.'],
+      ]),
+      item('Munich', 'Goal Destinations', 18.1, "Bavaria's heart.", [
+        ['The setting', 'A handsome Bavarian city at the edge of the Alps.'],
+        ['The icon', 'Oktoberfest, beer halls, and the Marienplatz glockenspiel.'],
+        ['The escape', 'Day trips to fairy-tale castles and alpine lakes an hour away.'],
+      ]),
+      item('Buenos Aires', 'Goal Destinations', 18.16, 'The Paris of South America.', [
+        ['The setting', 'Grand European avenues with unmistakable Argentine soul.'],
+        ['The dance', "Tango spilling out of San Telmo's streets and milongas."],
+        ['The table', 'Asado, malbec, and steak that ruins you for anywhere else.'],
+      ]),
     ],
   },
   {
-    title: 'Traveling',
+    title: 'Hobbies',
     items: [
-      {
-        id: 29,
-        category: 'traveling',
-        name: 'Paris',
-        imageUrl: [
-          'https://i.ibb.co/5W2F6gd/paris1.jpg',
-          'https://i.ibb.co/HpWv57X/paris2.jpg', 
-          'https://i.ibb.co/T0vMqqM/paris3.jpg'
-        ],
-        price: 425,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 30,
-        category: 'traveling',
-        name: 'Sydney',
-        imageUrl: [
-          'https://i.ibb.co/m0cDJLb/sydney1.jpg',
-          'https://i.ibb.co/nLbxf2H/sydney2.webp', 
-          'https://i.ibb.co/k0yfRtW/sydney3.jpg'
-        ],
-        price: 420,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 31,
-        category: 'traveling',
-        name: 'Rome',
-        imageUrl: [
-          'https://i.ibb.co/J5Zk3br/rome1.jpg',
-          'https://i.ibb.co/HKVm4n9/rome2.jpg', 
-          'https://i.ibb.co/g4hw27r/rome3.webp'
-        ],
-        price: 380,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 32,
-        category: 'traveling',
-        name: 'British Virgin Islands',
-        imageUrl: [
-          'https://i.ibb.co/gv02QRp/bvi1.png',
-          'https://i.ibb.co/MkY4cXc/bvi2.webp', 
-          'https://i.ibb.co/cx6g3m5/bvi3.jpg'
-        ],
-        price: 360,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 33,
-        category: 'traveling',
-        name: 'Porto',
-        imageUrl: [
-          'https://i.ibb.co/JKtnQQ1/porto1.webp',
-          'https://i.ibb.co/GHK9Y76/porto2.webp', 
-          'https://i.ibb.co/9W6NzQ5/porto3.jpg'
-        ],
-        price: 275,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 34,
-        category: 'traveling',
-        name: 'Berlin',
-        imageUrl: [
-          'https://i.ibb.co/cCHPcbs/berlin1.jpg',
-          'https://i.ibb.co/W2zX1X7/berlin2.jpg', 
-          'https://i.ibb.co/V26j4V5/berlin3.jpg'
-        ],
-        price: 315,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 35,
-        category: 'traveling',
-        name: 'Maui',
-        imageUrl: [
-          'https://i.ibb.co/2vcQCfw/maui1.jpg',
-          'https://i.ibb.co/CmCcR0N/maui2.webp', 
-          'https://i.ibb.co/R2VG59m/maui3.jpg'
-        ],
-        price: 500,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 36,
-        category: 'traveling',
-        name: 'Beijing',
-        imageUrl: [
-          'https://i.ibb.co/Z8bqdjp/beijing1.webp',
-          'https://i.ibb.co/8N2dM6c/beijing2.jpg', 
-          'https://i.ibb.co/NWxTmvM/beijing3.jpg'
-        ],
-        price: 550,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 37,
-        category: 'traveling',
-        name: 'Valencia',
-        imageUrl: [
-          'https://i.ibb.co/7zknTtG/val1.webp',
-          'https://i.ibb.co/r3sX5Yc/val3.webp', 
-          'https://i.ibb.co/0cvNqdQ/val2.jpg'
-        ],
-        price: 350,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 38,
-        category: 'traveling',
-        name: 'Peru',
-        imageUrl: [
-          'https://i.ibb.co/yRW1JmJ/peru3.jpg',
-          'https://i.ibb.co/YdMBsNZ/peru1.webp',
-          'https://i.ibb.co/X2FPK9J/peru2.webp',
-        ],
-        price: 480,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 39,
-        category: 'traveling',
-        name: 'Brussels',
-        imageUrl: [
-          'https://i.ibb.co/cyTtn3D/bruss1.webp',
-          'https://i.ibb.co/X5hVC9v/bruss2.png', 
-          'https://i.ibb.co/X3PT9ff/bruss3.jpg'
-        ],
-        price: 385,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 40,
-        category: 'traveling',
-        name: 'Barcelona',
-        imageUrl: [
-          'https://i.ibb.co/pL9NMst/barca1.jpg',
-          'https://i.ibb.co/W3V8b3F/barca2.jpg', 
-          'https://i.ibb.co/P4RNsty/barca3.jpg'
-        ],
-        price: 550,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
+      item('Soccer', '', 11.0, 'The beautiful game, up close.', [
+        ['Playing', 'Still lacing up for weekend games — the fitness, the touches, the camaraderie.'],
+        ['Coaching', 'Teaching the game to younger players and watching it click for them.'],
+        ['Watching', 'Early-morning kickoffs, league tables, and living and dying with every match.'],
+      ]),
+      item('Sailing', '', 24.9, 'Wind, tiller, and a long horizon.', [
+        ['On the water', 'Reading the wind and trimming sail until the boat finds its groove.'],
+        ['The craft', 'Navigation, knots, and weather — something you never stop learning.'],
+        ['The dream', 'The life goal: a full circumnavigation, all the way around.'],
+      ]),
+      item('Writing', '', 26.0, 'Filling the blank page.', [
+        ['Novels', 'The slow build of a long story — character, world, and a draft that finally holds together.'],
+        ['Screenplays', 'Writing in scenes and dialogue, where every line has to earn its place.'],
+        ['The craft', 'Reading like a writer and rewriting until it reads easy.'],
+      ]),
+      item('Stand Up', '', 5.0, 'Five minutes, no net.', [
+        ['Watching', 'Studying specials for timing, structure, and the perfect callback.'],
+        ['Performing', 'Taking a tight five to an open mic and trusting the bit.'],
+        ['The craft', 'Writing, tagging, and tightening jokes until they land.'],
+      ]),
+      item('Reading', '', 4.51, 'Always mid-book.', [
+        ['Fiction', "Getting lost in a novel that won't let you put it down."],
+        ['Nonfiction', 'History, science, and biography — learning by the chapter.'],
+        ['The ritual', 'A stack on the nightstand and a few pages before sleep.'],
+      ]),
+      item('Hiking', '', 20.0, 'Go where the trail goes.', [
+        ['The trail', 'Boots, a daypack, and a few hours moving through the trees.'],
+        ['The summit', 'The payoff view that makes the climb worth it.'],
+        ['The reset', 'No signal, just footsteps — the best way to clear your head.'],
+      ]),
+      item('Cooking', '', 35.0, 'Dinner as the hobby.', [
+        ['The technique', 'Knife skills, heat control, and learning to taste as you go.'],
+        ['The table', 'Feeding people — the real reason to cook.'],
+        ['The everyday', 'Turning a Tuesday and a full fridge into something good.'],
+      ]),
+      item('Working Out', '', 45.0, 'Reps in the bank.', [
+        ['The lift', 'Progressive strength work — a little more weight, a little at a time.'],
+        ['Conditioning', 'Runs and intervals to keep the engine honest.'],
+        ['The habit', "Showing up on the days you don't feel like it."],
+      ]),
+      item('Surfing', '', 30.0, 'Chasing the next wave.', [
+        ['The paddle-out', 'Reading the sets and timing the lulls to get past the break.'],
+        ['The wave', 'That weightless drop when you catch one just right.'],
+        ['The stoke', 'Salt, sun, and the patience the ocean demands.'],
+      ]),
+      item('Salsa Dancing', '', 8.0, 'Quick, quick, slow.', [
+        ['The basic', 'It all starts with the eight-count step — quick, quick, slow.'],
+        ['The partnerwork', 'Lead and follow, turns and timing, all in the connection.'],
+        ['The music', 'Clave, horns, and piano montunos that pull you onto the floor.'],
+      ]),
+      item('Ice Skating', '', 32.0, 'Edges and glide.', [
+        ['The glide', 'Long, quiet strokes across fresh ice.'],
+        ['The edges', 'Inside and outside edges — balance you feel more than think.'],
+        ['The rink', 'Crisp air, cold blades, and the scrape of a clean stop.'],
+      ]),
+      item('Coding', '', 42.0, 'Building things that run.', [
+        ['The build', 'Turning an idea into something that actually works on a screen.'],
+        ['The bug', 'The hunt — and the small thrill when the fix finally clicks.'],
+        ['The ship', 'Deploying it and watching real people use what you made.'],
+      ]),
     ],
   },
   {
-    title: 'Cooking',
+    title: 'Books & Music',
     items: [
-      {
-        id: 41,
-        category: 'cooking',
-        name: 'Carbonara',
-        imageUrl: [
-          'https://i.ibb.co/0QVNLCZ/carb1.webp', 
-          'https://i.ibb.co/k8wV2s9/carb2.webp', 
-          'https://i.ibb.co/2YGvs4c/carb3.jpg'
-        ],
-        price: 15,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 42,
-        category: 'cooking',
-        name: 'Amatriciana',
-        imageUrl: [
-          'https://i.ibb.co/dgP6F0N/ama1.jpg', 
-          'https://i.ibb.co/YT2tBGZ/ama3.jpg', 
-          'https://i.ibb.co/vPX4yt8/guan1.jpg'
-        ],        
-        price: 15,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 43,
-        category: 'cooking',
-        name: 'Steak',
-        imageUrl: [
-          'https://i.ibb.co/GHkDjyq/steak1.jpg', 
-          'https://i.ibb.co/Js0sNKd/steak2.jpg', 
-          'https://i.ibb.co/8B1CYV1/steak3.jpg'
-        ],        
-        price: 45,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 44,
-        category: 'cooking',
-        name: 'Tartiflette',
-        imageUrl: [
-          'https://i.ibb.co/PZc3q98/tart1.jpg', 
-          'https://i.ibb.co/FBPgS9L/tart2.jpg', 
-          'https://i.ibb.co/8D8CDF0/tart3.jpg'
-        ],        
-        price: 25,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 45,
-        category: 'cooking',
-        name: 'Lasagna',
-        imageUrl: [
-          'https://i.ibb.co/gJyhsXV/lasa1.jpg', 
-          'https://i.ibb.co/khHqJgh/lasa2.jpg', 
-          'https://i.ibb.co/2KFsSHX/lasa3.webp'
-        ],        
-        price: 20,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 46,
-        category: 'cooking',
-        name: 'Chicken Piccata',
-        imageUrl: [
-          'https://i.ibb.co/7R80r0v/picc1.webp', 
-          'https://i.ibb.co/1s3w0FM/picc2.jpg', 
-          'https://i.ibb.co/ftzjNQz/picc3.jpg'
-        ],        
-        price: 20,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 47,
-        category: 'cooking',
-        name: 'Lamb',
-        imageUrl: [
-          'https://i.ibb.co/C7GXwP0/lamb1.jpg', 
-          'https://i.ibb.co/MZXBZGz/lamb2.jpg', 
-          'https://i.ibb.co/RgtHLtw/lamb3.webp'
-        ],        
-        price: 35,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
-      {
-        id: 48,
-        category: 'cooking',
-        name: 'Fried Chicken',
-        imageUrl: [
-          'https://i.ibb.co/0cWFMCx/kfc1.jpg', 
-          'https://i.ibb.co/hVYv9fQ/kfc2.jpg', 
-          'https://i.ibb.co/qjZ3J8m/kfc3.webp'
-        ],        
-        price: 20,
-        features: {
-          title: 'Elegant Simplicity',
-          items: [
-            {
-              name: 'Origin',
-              description:
-                'It is believed to have originated in the Lazio region and is synonymous with the city of Rome.',
-            },
-            { name: 'Description', 
-              description: 'Carbonara is a creamy pasta dish made with fatty cured pork.' },
-            {
-              name: 'Ingredients',
-              description:
-                'The traditional preparation of Carbonara is made with: pasta (spaghetti is the most popular), guanciale, raw eggs, pecorino romano, and black pepper.',
-            },
-          ]
-        }
-      },
+      // --- Books (facets: author / the story / why it endures) ---
+      item('The Count of Monte Cristo', 'Books', 18.44, 'Revenge, served patiently.', [
+        ['Alexandre Dumas', 'The French master of adventure, who serialized the novel in 1844.'],
+        ['The story', 'Wrongly imprisoned, Edmond Dantès escapes, claims a hidden fortune, and engineers an elaborate revenge.'],
+        ['Why it endures', 'A 1,200-page page-turner about patience, justice, and the cost of vengeance.'],
+      ]),
+      item('A Place of Greater Safety', 'Books', 19.92, 'The Revolution, up close.', [
+        ['Hilary Mantel', "The two-time Booker winner's sweeping novel of the French Revolution."],
+        ['The story', 'Danton, Robespierre, and Desmoulins ride the Revolution from idealism to the guillotine.'],
+        ['Why it endures', 'History made intimate — friendship and ambition curdling into terror.'],
+      ]),
+      item('The Realm of the Elderlings', 'Books', 19.95, 'Fantasy that breaks your heart.', [
+        ['Robin Hobb', 'The pen name of Margaret Ogden, a master of character-driven fantasy.'],
+        ['The story', 'Sixteen books following FitzChivalry Farseer — a royal bastard and reluctant assassin — and his bond with the Fool.'],
+        ['Why it endures', 'Slow-burning and emotionally devastating; it rewards the long haul.'],
+      ]),
+      item('Lord of the Rings', 'Books', 19.54, 'Where modern fantasy begins.', [
+        ['J.R.R. Tolkien', 'The Oxford philologist who invented modern fantasy, languages and all.'],
+        ['The story', 'A hobbit carries a ruinous ring across Middle-earth to unmake it in the fire that forged it.'],
+        ['Why it endures', 'The template every fantasy since has been measured against.'],
+      ]),
+      item('To Kill A Mockingbird', 'Books', 19.6, 'Conscience in a small town.', [
+        ['Harper Lee', 'Her Pulitzer-winning 1960 novel, drawn from a Depression-era Alabama childhood.'],
+        ['The story', 'Scout Finch watches her father defend a Black man falsely accused in the Jim Crow South.'],
+        ['Why it endures', 'A clear-eyed look at conscience, prejudice, and growing up.'],
+      ]),
+      item('East of Eden', 'Books', 19.52, 'Thou mayest.', [
+        ['John Steinbeck', 'The Nobel laureate considered this his magnum opus.'],
+        ['The story', "Two families in California's Salinas Valley reenact Cain and Abel across generations."],
+        ['Why it endures', "A meditation on free will captured in one word: timshel — 'thou mayest.'"],
+      ]),
+      item('Moby-Dick', 'Books', 18.51, 'Call me Ishmael.', [
+        ['Herman Melville', 'His 1851 novel, a flop in its day, later hailed as the Great American Novel.'],
+        ['The story', "Captain Ahab hunts the white whale that took his leg, dragging his crew toward obsession's end."],
+        ['Why it endures', 'Part sea yarn, part encyclopedia, part fever dream.'],
+      ]),
+      item('One Hundred Years of Solitude', 'Books', 19.67, 'Where the miraculous is ordinary.', [
+        ['Gabriel García Márquez', 'The Nobel laureate and standard-bearer of magical realism.'],
+        ['The story', 'Seven generations of the Buendía family rise and fall in the mythical town of Macondo.'],
+        ['Why it endures', 'The book where the magical and the everyday share a sentence.'],
+      ]),
+      item('The Old Man and the Sea', 'Books', 19.52, 'Destroyed, not defeated.', [
+        ['Ernest Hemingway', 'His spare 1952 novella that helped win him the Nobel.'],
+        ['The story', 'An aging Cuban fisherman battles a giant marlin alone, far out in the Gulf Stream.'],
+        ['Why it endures', 'A short, stoic parable about struggle and dignity.'],
+      ]),
+      // --- Music (facets: three bands per genre) ---
+      item('Celtic Punk', 'Music', 19.82, 'Whiskey, fiddles, and distortion.', [
+        ['Flogging Molly', 'L.A.-via-Dublin band fronted by Dave King, mixing punk with tin whistle and fiddle.'],
+        ['Dropkick Murphys', "Boston's bagpipe-punk institution behind 'I'm Shipping Up to Boston.'"],
+        ['The Pogues', "The originals — Shane MacGowan's ragged poetry over Irish folk turned loud and fast."],
+      ]),
+      item('Classic Rock', 'Music', 19.69, 'Turn it up.', [
+        ['Led Zeppelin', "Riff-heavy giants of the '70s — Page's guitar, Plant's wail, and 'Stairway.'"],
+        ['The Beatles', 'The band that rewrote popular music in barely eight years.'],
+        ['AC/DC', "Australia's high-voltage hard rock, built on Angus Young's schoolboy stomp."],
+      ]),
+      item('Island Music', 'Music', 19.77, 'Sand between your toes.', [
+        ['IZ', "Israel Kamakawiwoʻole, whose ukulele 'Over the Rainbow' is pure aloha."],
+        ['Bob Marley & The Wailers', 'The voice that carried reggae from Kingston to the world.'],
+        ['Hapa', 'Hawaiian group blending slack-key guitar and contemporary harmonies.'],
+      ]),
     ],
   },
-];
+]
 
-module.exports = SHOP_DATA;
+module.exports = SHOP_DATA

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 
 import categoryImages from "../../utils/categoryImages"
 import { getBlurb } from "../../utils/categoryBlurbs"
+import { formatPrice } from "../../utils/formatPrice"
 
 const categoryHref = (title) => `/categories/${encodeURIComponent(title)}`
 const productHref = (title, name) =>
@@ -19,7 +20,7 @@ const ProductMini = ({ title, product }) => (
       />
     </div>
     <p className="mt-2 truncate font-serif text-sm">{product.name}</p>
-    <p className="text-sm font-semibold text-clay-700">${product.price}</p>
+    <p className="text-sm font-semibold text-clay-700">{formatPrice(product.price)}</p>
   </Link>
 )
 
@@ -126,7 +127,7 @@ const CategoryDirectory = () => {
                     {fromPrice != null && (
                       <>
                         <span className="h-1 w-1 rounded-full bg-clay-600" />
-                        <span>from ${fromPrice}</span>
+                        <span>from {formatPrice(fromPrice)}</span>
                       </>
                     )}
                   </div>

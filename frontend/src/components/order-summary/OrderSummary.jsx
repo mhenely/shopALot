@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { incrementItems, decrementItems, removeItem } from '../../features/cart/cartItems'
 
 import { TrashIcon } from '@heroicons/react/20/solid'
-
-const money = (n) => n.toFixed(2)
+import { formatPrice } from '../../utils/formatPrice'
 
 const OrderSummary = ({ redirecting = false }) => {
 
@@ -94,7 +93,7 @@ const OrderSummary = ({ redirecting = false }) => {
                       +
                     </button>
                   </div>
-                  <p className="font-semibold text-clay-700">${money(item.price * item.quantity)}</p>
+                  <p className="font-semibold text-clay-700">{formatPrice(item.price * item.quantity)}</p>
                 </div>
               </div>
             </li>
@@ -109,19 +108,19 @@ const OrderSummary = ({ redirecting = false }) => {
           <dl className="mt-5 space-y-3 text-sm">
             <div className="flex justify-between">
               <dt className="text-ink/60">Subtotal</dt>
-              <dd className="font-medium">${money(subtotal)}</dd>
+              <dd className="font-medium">{formatPrice(subtotal)}</dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-ink/60">Shipping</dt>
-              <dd className="font-medium">${money(shipping)}</dd>
+              <dd className="font-medium">{formatPrice(shipping)}</dd>
             </div>
             <div className="flex justify-between">
               <dt className="text-ink/60">Taxes</dt>
-              <dd className="font-medium">${money(tax)}</dd>
+              <dd className="font-medium">{formatPrice(tax)}</dd>
             </div>
             <div className="flex justify-between border-t border-clay-100 pt-3 text-base">
               <dt className="font-serif font-semibold">Total</dt>
-              <dd className="font-serif text-xl font-semibold">${money(total)}</dd>
+              <dd className="font-serif text-xl font-semibold">{formatPrice(total)}</dd>
             </div>
           </dl>
           <button

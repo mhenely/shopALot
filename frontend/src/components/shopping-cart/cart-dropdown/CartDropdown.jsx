@@ -4,6 +4,7 @@ import { removeAllItems } from '../../../features/cart/cartItems.js';
 import { toggleCartOpen } from '../../../features/cart/cartDropdownSlice.js';
 
 import CartItem from '../cart-items/CartItem.jsx'
+import { formatPrice } from '../../../utils/formatPrice.js'
 
 const CartDropdown = () => {
   const cartItems = useSelector((state) => state.cartItems.items);
@@ -40,7 +41,7 @@ const CartDropdown = () => {
       <div className="border-t border-clay-100 pt-3">
         <div className="flex items-baseline justify-between">
           <span className="text-sm text-ink/60">Total</span>
-          <span className="font-serif text-2xl">${cartTotal.toFixed(2)}</span>
+          <span className="font-serif text-2xl">{formatPrice(cartTotal)}</span>
         </div>
         <button
           onClick={goToCheckoutHandler}

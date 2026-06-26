@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { decrementItems, incrementItems } from "../../../features/cart/cartItems";
+import { formatPrice } from "../../../utils/formatPrice";
 
 const CartItem = ({ cartItem }) => {
   const { name, quantity, imageUrl, price, id, category } = cartItem;
@@ -22,7 +23,7 @@ const CartItem = ({ cartItem }) => {
       />
       <div className="min-w-0 flex-1">
         <p onClick={handleNavigate} className="cursor-pointer truncate font-serif text-sm hover:text-clay-700">{name}</p>
-        <p className="text-xs text-ink/40">${(price * quantity).toFixed(2)}</p>
+        <p className="text-xs text-ink/40">{formatPrice(price * quantity)}</p>
       </div>
       <div className="flex items-center gap-2 text-sm text-ink/60">
         <button

@@ -38,7 +38,7 @@ describe('CategoryProductCard', () => {
   it('renders the product name and price', () => {
     renderCard()
     expect(screen.getByText('Carbonara')).toBeInTheDocument()
-    expect(screen.getByText('$20')).toBeInTheDocument()
+    expect(screen.getByText('$20.00')).toBeInTheDocument()
   })
 
   it('renders the product image with the name as alt text', () => {

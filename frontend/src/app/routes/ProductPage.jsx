@@ -5,6 +5,7 @@ import { incrementItems } from "../../features/cart/cartItems";
 
 import ProductImages from "../../components/product-component/ProductImages";
 import StatusScreen from "../../components/StatusScreen";
+import { formatPrice } from "../../utils/formatPrice";
 
 const productHref = (categoryId, name) =>
   `/categories/${encodeURIComponent(categoryId)}/${encodeURIComponent(name.toLowerCase())}`
@@ -61,7 +62,7 @@ const ProductPage = () => {
             {data.subcategory && <> · {data.subcategory}</>}
           </p>
           <h1 className="mt-2 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">{data.name}</h1>
-          <p className="mt-4 font-serif text-3xl text-clay-700">${data.price}</p>
+          <p className="mt-4 font-serif text-3xl text-clay-700">{formatPrice(data.price)}</p>
           {data.features?.title && (
             <p className="mt-4 font-serif text-xl italic text-ink/70">{data.features.title}</p>
           )}
@@ -128,7 +129,7 @@ const ProductPage = () => {
                   />
                 </div>
                 <h3 className="mt-3 truncate font-serif text-lg group-hover:text-clay-700">{item.name}</h3>
-                <p className="font-semibold text-clay-700">${item.price}</p>
+                <p className="font-semibold text-clay-700">{formatPrice(item.price)}</p>
               </Link>
             ))}
           </div>

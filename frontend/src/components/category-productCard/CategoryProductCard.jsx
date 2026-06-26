@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { incrementItems } from "../../features/cart/cartItems";
+import { formatPrice } from "../../utils/formatPrice";
 
 const CategoryProductCard = ({ product, category }) => {
   const { name, price, imageUrl, subcategory } = product;
@@ -46,7 +47,7 @@ const CategoryProductCard = ({ product, category }) => {
             <p className="text-xs uppercase tracking-wide text-ink/40">{subcategory}</p>
           )}
         </div>
-        <p className="whitespace-nowrap font-semibold text-clay-700">${price}</p>
+        <p className="whitespace-nowrap font-semibold text-clay-700">{formatPrice(price)}</p>
       </div>
     </div>
   )

@@ -5,14 +5,12 @@ import sports from '../assets/soccer.jpeg'
 import food from '../assets/food.jpeg'
 import travel from '../assets/travel.png'
 import hobbies from '../assets/sailing.jpeg'
-import readingRecords from '../assets/parks.webp'
 
 const categoryImages = {
   sports,
   food,
-  'travel related': travel,
+  travel,
   hobbies,
-  'reading & records': readingRecords,
 }
 
 export default categoryImages

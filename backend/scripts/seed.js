@@ -13,7 +13,7 @@ const SHOP_DATA = require('../utils/shopData')
 const categoryImages = {
   sports: '',
   food: '',
-  'travel related': '',
+  travel: '',
   hobbies: '',
 }
 

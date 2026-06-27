@@ -4,20 +4,23 @@
 // (the in-page filter chips — Hobbies has none) and three "facets". Each facet
 // becomes one labeled detail row AND one gallery image on the product page.
 //
-// PLACEHOLDERS: imageUrl points at labeled placehold.co boxes ("Item · Facet")
-// so you know which photo goes where — swap in real images. Descriptions are
-// written; prices are playful nods (shirt numbers, founding years, landmark
-// dates) — tweak freely.
+// Images are served from Cloudinary. Each item's ordered public_ids live in
+// cloudinaryImages.js (generated from the account via the Admin API, keyed by
+// "<Category>|<Item>"). f_auto/q_auto pick the best format + compression per
+// browser; w_800 caps the delivered width. Descriptions are written; prices are
+// playful nods (shirt numbers, founding years, landmark dates) — tweak freely.
 
-const PLACE = (label) =>
-  `https://placehold.co/600x720/f1e4d6/97431a?text=${encodeURIComponent(label)}`
+const CLOUD = 'dujaxgc5g'
+const CLD_IDS = require('./cloudinaryImages')
+const cldUrl = (publicId) =>
+  `https://res.cloudinary.com/${CLOUD}/image/upload/f_auto,q_auto,w_800/${publicId}`
 
 // facets: [ [label, description], ... ] (three each). One detail + one image apiece.
+// imageUrl is resolved after SHOP_DATA is built (it needs the category title).
 const item = (name, subcategory, price, tagline, facets) => ({
   name,
   subcategory,
   price,
-  imageUrl: facets.map(([label]) => PLACE(`${name} · ${label}`)),
   features: {
     title: tagline,
     items: facets.map(([label, description]) => ({ name: label, description })),
@@ -304,7 +307,7 @@ const SHOP_DATA = [
       item('A Place of Greater Safety', 'Books', 19.92, 'The Revolution, up close.', [
         ['Hilary Mantel', "The two-time Booker winner's sweeping novel of the French Revolution."],
         ['The story', 'Danton, Robespierre, and Desmoulins ride the Revolution from idealism to the guillotine.'],
-        ['Why it endures', 'History made intimate — friendship and ambition curdling into terror.'],
+        ['Why it endures', 'History made intimate — friendship and ambition transforming into terror.'],
       ]),
       item('The Realm of the Elderlings', 'Books', 19.95, 'Fantasy that breaks your heart.', [
         ['Robin Hobb', 'The pen name of Margaret Ogden, a master of character-driven fantasy.'],
@@ -334,7 +337,7 @@ const SHOP_DATA = [
       item('One Hundred Years of Solitude', 'Books', 19.67, 'Where the miraculous is ordinary.', [
         ['Gabriel García Márquez', 'The Nobel laureate and standard-bearer of magical realism.'],
         ['The story', 'Seven generations of the Buendía family rise and fall in the mythical town of Macondo.'],
-        ['Why it endures', 'The book where the magical and the everyday share a sentence.'],
+        ['Why it endures', 'The book where the magical and the everyday come together.'],
       ]),
       item('The Old Man and the Sea', 'Books', 19.52, 'Destroyed, not defeated.', [
         ['Ernest Hemingway', 'His spare 1952 novella that helped win him the Nobel.'],
@@ -355,10 +358,18 @@ const SHOP_DATA = [
       item('Island Music', 'Music', 19.77, 'Sand between your toes.', [
         ['IZ', "Israel Kamakawiwoʻole, whose ukulele 'Over the Rainbow' is pure aloha."],
         ['Bob Marley & The Wailers', 'The voice that carried reggae from Kingston to the world.'],
-        ['Hapa', 'Hawaiian group blending slack-key guitar and contemporary harmonies.'],
+        ['Onetox', 'Onetox are pioneers of Solomon Island Reggae and were one of the first bands from the South Pacific to break through internationally.'],
       ]),
     ],
   },
 ]
+
+// Resolve each item's gallery images from its Cloudinary public_ids.
+for (const category of SHOP_DATA) {
+  for (const product of category.items) {
+    const ids = CLD_IDS[`${category.title}|${product.name}`] || []
+    product.imageUrl = ids.map(cldUrl)
+  }
+}
 
 module.exports = SHOP_DATA

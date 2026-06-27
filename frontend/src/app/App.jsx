@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Outlet } from "react-router-dom"
+import { Outlet, ScrollRestoration } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import { fetchShopData } from "../features/shopData"
@@ -22,6 +22,8 @@ const App = () => {
 
   return (
     <>
+      {/* Reset scroll to top on navigation; restore position on back/forward. */}
+      <ScrollRestoration />
       <Navbar />
       <Outlet />
       <Footer />
